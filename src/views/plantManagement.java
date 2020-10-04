@@ -16,6 +16,7 @@ import nuclearPlant.elements.Reactor;
  * @author nata_
  */
 public class plantManagement extends javax.swing.JFrame {
+    
     Reactor reactor = new Reactor();
     ImageIcon iconOn = new ImageIcon("src/Images/on.png");
     ImageIcon iconOff = new ImageIcon("src/Images/off.png");
@@ -50,6 +51,7 @@ public class plantManagement extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,6 +136,7 @@ public class plantManagement extends javax.swing.JFrame {
         txtEstado.setBounds(378, 108, 150, 30);
 
         btnReparar.setText("Reparar");
+        btnReparar.setEnabled(false);
         btnReparar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRepararActionPerformed(evt);
@@ -154,49 +157,81 @@ public class plantManagement extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(240, 150, 20, 30);
 
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar);
+        btnCerrar.setBounds(230, 360, 120, 23);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 569, 370);
+        jLabel1.setBounds(0, 0, 569, 420);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
-        if(Integer.parseInt(txtCarga.getText()) < 0) {
-            JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
-        }else {
-            reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
-            System.out.println(reactor.getCharge());
-            pbCarga.setValue(reactor.getCharge());
-            pbCarga.setString(reactor.getCharge() + "%");
-            if(reactor.getCharge()>100){
-                JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
-                pbCarga.setString("!");
-                pbCarga.setValue(0);
-                txtEstado.setText(reactor.getState().getLabel());
-                System.out.println(reactor.getState().getLabel());
-                onOff.setEnabled(false);
-                btncargar.setEnabled(false);
-                btndescargar.setEnabled(false);
-                txtCarga.setEditable(false);
-                txtDescarga.setEditable(false);
-                txtEstado.setForeground(Color.red);
-                pbCarga.setForeground(Color.red);
+        try{
+            if(Integer.parseInt(txtCarga.getText()) < 0) {
+                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
+                System.out.println(reactor.getCharge());
+                pbCarga.setValue(reactor.getCharge());
+                pbCarga.setString(reactor.getCharge() + "%");
+                if(reactor.getCharge()>100){
+                    JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
+                    pbCarga.setString("!");
+                    pbCarga.setValue(0);
+                    txtEstado.setText(reactor.getState().getLabel());
+                    System.out.println(reactor.getState().getLabel());
+                    onOff.setEnabled(false);
+                    btncargar.setEnabled(false);
+                    btndescargar.setEnabled(false);
+                    txtCarga.setEditable(false);
+                    txtDescarga.setEditable(false);
+                    txtEstado.setForeground(Color.red);
+                    pbCarga.setForeground(Color.red);
+                    btnReparar.setEnabled(true);
+                }
             }
         }
+        catch(NumberFormatException e){
+            if(reactor.isSwitchedOn()==false){
+                JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } 
         txtCarga.setText(null);
     }//GEN-LAST:event_btncargarActionPerformed
 
     private void btndescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarActionPerformed
-        if(Integer.parseInt(txtDescarga.getText()) < 0) {
-            JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
-            System.out.println(reactor.getCharge());
-            pbCarga.setValue(reactor.getCharge());
-            pbCarga.setString(reactor.getCharge() + "%");
-        }
-        txtDescarga.setText(null);
+        try{
+            if(Integer.parseInt(txtDescarga.getText()) < 0) {
+                JOptionPane.showMessageDialog(null, "Valor requerido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
+                System.out.println(reactor.getCharge());
+                pbCarga.setValue(reactor.getCharge());
+                pbCarga.setString(reactor.getCharge() + "%");
+            }
+        }catch(NumberFormatException e){
+            if(reactor.isSwitchedOn()==false){
+                JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor, el campo no debe estar vacío", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un valor, el campo no debe estar vacío", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } 
+        txtDescarga.setText(null);     
     }//GEN-LAST:event_btndescargarActionPerformed
 
     private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
@@ -221,9 +256,6 @@ public class plantManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEstadoActionPerformed
 
     private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
-        if(txtEstado.getText().equals("Funcional")){
-            JOptionPane.showMessageDialog(null, "El reactor se encuentra en buen estado", "Error", JOptionPane.INFORMATION_MESSAGE);
-        } else {
             reactor.repair();
             txtEstado.setText(reactor.getState().getLabel());
             reactor.setCharge(0);
@@ -232,11 +264,17 @@ public class plantManagement extends javax.swing.JFrame {
             onOff.setEnabled(true);
             txtEstado.setForeground(Color.green);
             pbCarga.setForeground(Color.black);
+            btncargar.setEnabled(true);
+            btndescargar.setEnabled(true);
+            txtCarga.setEditable(true);
+            txtDescarga.setEditable(true);
+            btnReparar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Reactor reparado", "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-
     }//GEN-LAST:event_btnRepararActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,16 +305,18 @@ public class plantManagement extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               plantManagement management = new plantManagement();
-                management.setVisible(true);
+            public void run() {          
+                plantManagement management = new plantManagement();
+                management.setVisible(true);                
+                management.setBounds(WIDTH, WIDTH, 569, 420);
                 
-                management.setBounds(WIDTH, WIDTH, 569, 370);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnReparar;
     private javax.swing.JButton btncargar;
     private javax.swing.JButton btndescargar;

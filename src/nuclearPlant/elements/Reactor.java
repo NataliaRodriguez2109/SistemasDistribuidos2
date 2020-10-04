@@ -77,7 +77,13 @@ public class Reactor {
                 JOptionPane.showMessageDialog(null, "El reactor ya está completamente descargado", "Error", JOptionPane.WARNING_MESSAGE);
             } else
             {
-                charge = charge - value;    
+                if((charge - value) < 0){
+                   // charge = 0;
+                    JOptionPane.showMessageDialog(null, "La carga es de: " + charge + "% el valor ingresado es demasiado alto", "Error", JOptionPane.WARNING_MESSAGE);
+                }else {
+                    charge = charge - value; 
+                }
+                   
             }
         }else {
             JOptionPane.showMessageDialog(null, "El reactor se encuentra apagado, debe encender antes de descargar", "Error", JOptionPane.INFORMATION_MESSAGE);

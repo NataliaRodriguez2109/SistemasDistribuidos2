@@ -10,13 +10,21 @@ package nuclearPlant.elements;
  * @author Jesus David Otero
  */
 public class Plant {
+    private String direccion;
     private Reactor reactores[];
 
-    public Plant() {
+    public Plant(String direccion) {
         this.reactores = new Reactor[3];
         reactores[0] = new Reactor();
         reactores[1] = new Reactor();
         reactores[2] = new Reactor();
     }
+
+    @Override
+    public String toString() {
+        return direccion;
+    }
+    
+    
        
 }

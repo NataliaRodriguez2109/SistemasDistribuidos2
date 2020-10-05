@@ -15,14 +15,14 @@ import nuclearPlant.elements.Reactor;
  *
  * @author nata_
  */
-public class plantManagement extends javax.swing.JFrame {
+public class ReactorManagement extends javax.swing.JFrame {
     Reactor reactor = new Reactor();
     ImageIcon iconOn = new ImageIcon("src/Images/on.png");
     ImageIcon iconOff = new ImageIcon("src/Images/off.png");
     /**
      * Creates new form plantManagement
      */
-    public plantManagement() {
+    public ReactorManagement() {
         initComponents();
     }
 
@@ -255,20 +255,21 @@ public class plantManagement extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(plantManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReactorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(plantManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReactorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(plantManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReactorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(plantManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReactorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               plantManagement management = new plantManagement();
+               ReactorManagement management = new ReactorManagement();
                 management.setVisible(true);
                 
                 management.setBounds(WIDTH, WIDTH, 569, 370);

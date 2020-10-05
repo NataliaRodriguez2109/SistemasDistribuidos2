@@ -10,5 +10,13 @@ package nuclearPlant.elements;
  * @author Jesus David Otero
  */
 public class Plant {
-    
+    private Reactor reactores[];
+
+    public Plant() {
+        this.reactores = new Reactor[3];
+        reactores[0] = new Reactor();
+        reactores[1] = new Reactor();
+        reactores[2] = new Reactor();
+    }
+       
 }

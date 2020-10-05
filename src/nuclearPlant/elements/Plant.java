@@ -10,7 +10,6 @@ package nuclearPlant.elements;
  * @author nata_
  */
 public class Plant {
-    Reactor [] reactores = new Reactor[3];
     
     
 }

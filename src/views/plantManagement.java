@@ -52,6 +52,7 @@ public class plantManagement extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,16 +60,14 @@ public class plantManagement extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Acciones en reactor");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(160, 10, 280, 29);
+        jLabel3.setBounds(260, 90, 280, 29);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carga");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(260, 220, 70, 30);
+        jLabel4.setBounds(30, 310, 70, 30);
 
         btncargar.setText("Cargar");
         btncargar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +76,7 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btncargar);
-        btncargar.setBounds(10, 110, 100, 30);
+        btncargar.setBounds(20, 150, 100, 40);
 
         btndescargar.setText("Descargar");
         btndescargar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,22 +85,22 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btndescargar);
-        btndescargar.setBounds(10, 150, 100, 30);
+        btndescargar.setBounds(20, 210, 100, 40);
         getContentPane().add(txtCarga);
-        txtCarga.setBounds(170, 110, 67, 30);
+        txtCarga.setBounds(190, 150, 80, 40);
         getContentPane().add(txtDescarga);
-        txtDescarga.setBounds(170, 150, 67, 30);
+        txtDescarga.setBounds(190, 210, 80, 40);
 
         jLabel5.setText("%");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(240, 110, 20, 30);
+        jLabel5.setBounds(270, 150, 20, 30);
 
         pbCarga.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pbCarga.setForeground(new java.awt.Color(0, 0, 0));
         pbCarga.setToolTipText("");
         pbCarga.setStringPainted(true);
         getContentPane().add(pbCarga);
-        pbCarga.setBounds(53, 256, 470, 50);
+        pbCarga.setBounds(100, 300, 640, 50);
 
         onOff.setForeground(new java.awt.Color(255, 255, 255));
         onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/off.png"))); // NOI18N
@@ -114,13 +113,12 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(onOff);
-        onOff.setBounds(240, 60, 70, 37);
+        onOff.setBounds(580, 90, 70, 37);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Estado");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(300, 111, 60, 22);
+        jLabel7.setBounds(450, 150, 60, 22);
 
         txtEstado.setEditable(false);
         txtEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -133,7 +131,7 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtEstado);
-        txtEstado.setBounds(378, 108, 150, 30);
+        txtEstado.setBounds(530, 150, 180, 30);
 
         btnReparar.setText("Reparar");
         btnReparar.setEnabled(false);
@@ -143,19 +141,19 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReparar);
-        btnReparar.setBounds(378, 146, 150, 23);
+        btnReparar.setBounds(530, 210, 180, 30);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/carga.png"))); // NOI18N
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(120, 110, 37, 30);
+        jLabel9.setBounds(140, 150, 37, 30);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/descarga.png"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(120, 150, 37, 30);
+        jLabel10.setBounds(140, 210, 37, 30);
 
         jLabel6.setText("%");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 150, 20, 30);
+        jLabel6.setBounds(270, 210, 20, 30);
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,11 +162,17 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCerrar);
-        btnCerrar.setBounds(230, 360, 120, 23);
+        btnCerrar.setBounds(310, 380, 120, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 260, 80);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 569, 420);
+        jLabel1.setBounds(0, -10, 780, 460);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -247,6 +251,9 @@ public class plantManagement extends javax.swing.JFrame {
             reactor.turnOff();
             System.out.println(reactor.isSwitchedOn());
             txtEstado.setText(null);
+            reactor.setCharge(0);
+            pbCarga.setValue(reactor.getCharge());
+            pbCarga.setString(reactor.getCharge() + "%");
         }
 
     }//GEN-LAST:event_onOffActionPerformed
@@ -308,7 +315,7 @@ public class plantManagement extends javax.swing.JFrame {
             public void run() {          
                 plantManagement management = new plantManagement();
                 management.setVisible(true);                
-                management.setBounds(WIDTH, WIDTH, 569, 420);
+                management.setBounds(WIDTH, WIDTH, 782, 442);
                 
             }
         });
@@ -322,6 +329,7 @@ public class plantManagement extends javax.swing.JFrame {
     private javax.swing.JButton btndescargar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

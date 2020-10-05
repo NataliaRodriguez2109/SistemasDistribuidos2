@@ -100,7 +100,7 @@ public class plantManagement extends javax.swing.JFrame {
         pbCarga.setToolTipText("");
         pbCarga.setStringPainted(true);
         getContentPane().add(pbCarga);
-        pbCarga.setBounds(100, 300, 640, 50);
+        pbCarga.setBounds(100, 300, 550, 50);
 
         onOff.setForeground(new java.awt.Color(255, 255, 255));
         onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/off.png"))); // NOI18N

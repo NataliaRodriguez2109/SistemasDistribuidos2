@@ -11,6 +11,6 @@ package nuclearPlant.elements;
  */
 public class Plant {
     Reactor [] reactores = new Reactor[3];
-
+    
     
 }

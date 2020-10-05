@@ -46,8 +46,9 @@ public class Console extends javax.swing.JFrame {
 
         jButton1.setText("Escanear Plantas");
         getContentPane().add(jButton1);
-        jButton1.setBounds(150, 140, 150, 60);
+        jButton1.setBounds(120, 140, 150, 60);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -58,7 +59,7 @@ public class Console extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Plantas encontradas");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(440, 60, 164, 14);
+        jLabel1.setBounds(430, 60, 164, 14);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Selección de Planta");

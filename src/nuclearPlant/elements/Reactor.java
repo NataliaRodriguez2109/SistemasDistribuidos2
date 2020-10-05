@@ -24,7 +24,7 @@ public class Reactor {
         return switchedOn;
     }
 
-    public void setSwitchedOn(boolean switchedOn) {
+    public void setSwitchOn(boolean switchedOn) {
         this.switchedOn = switchedOn;
     }
 

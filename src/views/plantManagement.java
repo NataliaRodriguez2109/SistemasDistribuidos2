@@ -140,7 +140,7 @@ public class plantManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReparar);
-        btnReparar.setBounds(378, 146, 150, 23);
+        btnReparar.setBounds(378, 146, 150, 25);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/carga.png"))); // NOI18N
         getContentPane().add(jLabel9);

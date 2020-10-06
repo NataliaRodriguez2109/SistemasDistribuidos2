@@ -9,7 +9,7 @@ package nuclearPlant.elements;
  *
  * @author Jesus David Otero
  */
-public class Plant {
+public class Plant {    
     private Reactor reactores[];
 
     public Plant() {
@@ -18,5 +18,8 @@ public class Plant {
         reactores[1] = new Reactor();
         reactores[2] = new Reactor();
     }
+    
+    
+    
        
 }

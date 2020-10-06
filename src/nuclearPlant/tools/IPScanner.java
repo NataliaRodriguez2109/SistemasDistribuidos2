@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package nuclearPlant.tools;
+
+import java.net.SocketAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class IPScanner
+{
+    private static int port;
+    
+    public static ArrayList<String> checkHosts(final String subnet) {
+        final ArrayList<String> dirs = new ArrayList<String>();
+        final int timeout = 200;
+        for (int i = 60; i < 255; ++i) {
+            final String ip = subnet + "." + i;
+            if (portIsOpen(ip, IPScanner.port, 200)) {
+                System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");
+                dirs.add(ip);
+            }
+            else {
+                System.out.println("The port " + IPScanner.port + " host " + ip + " is OFF (probed with a timeout of " + 200 + "ms)");
+            }
+        }
+        return dirs;
+    }
+    
+    public static boolean portIsOpen(final String ip, final int port, final int timeout) {
+        try {
+            final Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(ip, port), timeout);
+            socket.close();
+            return true;
+        }
+        catch (Exception ex) {
+            return false;
+        }
+    }
+    
+    public static int getPort() {
+        return IPScanner.port;
+    }
+    
+    static {
+        IPScanner.port = 32645;
+    }
+}

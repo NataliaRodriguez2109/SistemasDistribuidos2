@@ -5,14 +5,17 @@
  */
 package nuclearPlant.elements;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nata_
  */
-public class State {
-    String label = "Funcional";
+public class State implements Serializable{
+    String label;
 
     public State() {
+        label = "Funcional";
     }
 
     public String getLabel() {

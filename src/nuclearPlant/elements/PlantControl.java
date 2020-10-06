@@ -8,48 +8,43 @@ package nuclearPlant.elements;
 import java.io.IOException;
 import java.net.Socket;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.SocketException;
 
-public class PlantControl
-{
+public class PlantControl {
+
     private ServerSocket servidor;
     private Plant planta;
     
+
     public PlantControl() {
         this.servidor = null;
-        try {
-            final InetAddress direccion = InetAddress.getLocalHost();
-            this.planta = new Plant();
-        }
-        catch (Exception ex) {}
+        this.planta = new Plant();
         try {
             this.servidor = new ServerSocket(32645);
+        } catch (Exception ex2) {
+            System.out.println(ex2.getMessage());
         }
-        catch (Exception ex2) {}
     }
-    
+
     public void iniciarServidor() {
         while (true) {
             try {
-                String nombreArchivo;
-                do {
-                    final Socket cliente = this.servidor.accept();
-                    final DataInputStream dis = new DataInputStream(cliente.getInputStream());
-                    nombreArchivo = dis.readUTF().toString();
-                    final int tam = dis.readInt();
-                    final byte[] buffer = new byte[tam];
-                    cliente.close();
-                } while (!nombreArchivo.contains("secci"));
-            }
-            catch (Exception e) {
+                final Socket cliente = this.servidor.accept();
+                ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
+                obj.writeObject(planta);
+                cliente.close();
+            } catch (Exception e) {
                 System.out.println(e.toString());
                 continue;
-            }
-            break;
+            }            
         }
     }
     
+
     public static void main(final String[] arguments) throws IOException {
         new PlantControl().iniciarServidor();
     }

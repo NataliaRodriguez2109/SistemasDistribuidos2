@@ -16,7 +16,7 @@ import nuclearPlant.elements.Reactor;
  */
 public class ReactorMng extends javax.swing.JPanel {
 
-     Reactor reactor = new Reactor();
+    Reactor reactor = new Reactor();
     ImageIcon iconOn = new ImageIcon("src/Images/on.png");
     ImageIcon iconOff = new ImageIcon("src/Images/off.png");
     /**

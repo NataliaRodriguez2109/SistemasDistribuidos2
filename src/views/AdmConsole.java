@@ -5,7 +5,10 @@
  */
 package views;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import nuclearPlant.comunications.AdminManager;
 import nuclearPlant.elements.Plant;
 
 /**
@@ -14,35 +17,40 @@ import nuclearPlant.elements.Plant;
  */
 public class AdmConsole extends javax.swing.JFrame {
 
+    AdminManager admm;
+
     /**
      * Creates new form AdmConsole
      */
     public AdmConsole() {
+
         initComponents();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        admm = new AdminManager(this);
     }
 
-    
-    
-    public void pintarPanel(JPanel panel){
+    public JList getLista() {
+        return listaDirs;
+    }
+
+    public void pintarPanel(JPanel panel) {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(panelPlanta);
         panelPlanta.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(495, Short.MAX_VALUE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(495, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
         );
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +63,7 @@ public class AdmConsole extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<Plant>();
+        listaDirs = new javax.swing.JList<String>();
         txtDirPlanta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +73,13 @@ public class AdmConsole extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jList1);
+        listaDirs.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        listaDirs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listaDirsMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaDirs);
 
         txtDirPlanta.setToolTipText("Direccion de la planta");
 
@@ -171,6 +185,12 @@ public class AdmConsole extends javax.swing.JFrame {
         pintarPanel(new PlantaGraph(new Plant()));
     }//GEN-LAST:event_jButton1MouseReleased
 
+    private void listaDirsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDirsMouseReleased
+        String dirSelected = listaDirs.getSelectedValue();
+        admm.conect(dirSelected);
+        pintarPanel(new PlantaGraph(admm.getPlanta()));
+    }//GEN-LAST:event_listaDirsMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -210,11 +230,11 @@ public class AdmConsole extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<Plant> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JList<String> listaDirs;
     private javax.swing.JPanel panelPlanta;
     private javax.swing.JTextField txtDirPlanta;
     // End of variables declaration//GEN-END:variables

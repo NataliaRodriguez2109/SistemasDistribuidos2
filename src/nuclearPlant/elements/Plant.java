@@ -5,11 +5,13 @@
  */
 package nuclearPlant.elements;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jesus David Otero
  */
-public class Plant {    
+public class Plant implements Serializable{    
     private Reactor reactores[];
 
     public Plant() {

@@ -5,19 +5,22 @@
  */
 package nuclearPlant.elements;
 
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author nata_
  */
-public class Reactor {
-    boolean switchedOn = false;
-    int charge = 0;
+public class Reactor implements Serializable{
+    boolean switchedOn;
+    int charge;
     
     State state = new State();
 
     public Reactor() {
+        charge = 0;
+        switchedOn = false;
     }
 
     public boolean isSwitchedOn() {

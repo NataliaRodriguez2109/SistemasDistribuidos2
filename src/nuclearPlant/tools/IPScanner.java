@@ -9,43 +9,45 @@ import java.net.SocketAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
-public class IPScanner
-{
+public class IPScanner {
+
     private static int port;
-    
-    public static ArrayList<String> checkHosts(final String subnet) {
-        final ArrayList<String> dirs = new ArrayList<String>();
-        final int timeout = 200;
+
+    public static void checkHosts(final String subnet, JList lista) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        lista.setModel(model);        
+        final int timeout = 1000;
         for (int i = 60; i < 255; ++i) {
             final String ip = subnet + "." + i;
             if (portIsOpen(ip, IPScanner.port, 200)) {
                 System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");
-                dirs.add(ip);
-            }
-            else {
+                model.add(model.getSize(), ip);
+            } else {
                 System.out.println("The port " + IPScanner.port + " host " + ip + " is OFF (probed with a timeout of " + 200 + "ms)");
             }
         }
-        return dirs;
     }
+
     
+
     public static boolean portIsOpen(final String ip, final int port, final int timeout) {
         try {
             final Socket socket = new Socket();
             socket.connect(new InetSocketAddress(ip, port), timeout);
             socket.close();
             return true;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
-    
+
     public static int getPort() {
         return IPScanner.port;
     }
-    
+
     static {
         IPScanner.port = 32645;
     }

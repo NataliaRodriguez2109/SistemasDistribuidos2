@@ -29,10 +29,7 @@ public class PlantaGraph extends javax.swing.JPanel {
         txtOnOffR2.setText(String.valueOf(planta.getReactores()[1].isSwitchedOn()));
         txtCargaR3.setText(String.valueOf(planta.getReactores()[2].getCharge()));
         txtEstadoR3.setText(String.valueOf(planta.getReactores()[2].getState().getLabel()));
-        txtOnOffR3.setText(String.valueOf(planta.getReactores()[2].isSwitchedOn()));
-        
-             
-        
+        txtOnOffR3.setText(String.valueOf(planta.getReactores()[2].isSwitchedOn()));                             
         
     }
 

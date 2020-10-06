@@ -14,7 +14,7 @@ import javax.swing.JList;
 
 public class IPScanner {
 
-    private static int port;
+    private static int port = 32645;
 
     public static void checkHosts(final String subnet, JList lista) {
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -47,8 +47,5 @@ public class IPScanner {
     public static int getPort() {
         return IPScanner.port;
     }
-
-    static {
-        IPScanner.port = 32645;
-    }
+    
 }

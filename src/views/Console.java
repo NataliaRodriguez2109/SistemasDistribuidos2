@@ -29,58 +29,73 @@ public class Console extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        btnCerrar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(782, 441));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 0));
-        jPanel1.setLayout(null);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(210, 10, 260, 78);
-
         jButton1.setText("Escanear Plantas");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(90, 160, 150, 60);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(120, 140, 150, 60);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(360, 100, 246, 187);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(390, 80, 246, 187);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Plantas encontradas");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(400, 80, 164, 16);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(430, 60, 164, 14);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Selección de Planta");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(230, 310, 270, 22);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(260, 290, 270, 22);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(390, 330, 246, 40);
+
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar);
+        btnCerrar.setBounds(310, 410, 120, 23);
 
         jButton2.setText("Seleccionar");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(90, 350, 130, 40);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(360, 350, 246, 40);
+        getContentPane().add(jButton2);
+        jButton2.setBounds(120, 330, 130, 40);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 810, 410);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 260, 78);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo.png"))); // NOI18N
+        jLabel5.setText("jLabel1");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, -10, 780, 460);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,12 +135,13 @@ public class Console extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

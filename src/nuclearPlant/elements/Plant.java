@@ -20,6 +20,14 @@ public class Plant implements Serializable{
         reactores[1] = new Reactor();
         reactores[2] = new Reactor();
     }
+
+    public Reactor[] getReactores() {
+        return reactores;
+    }
+
+    public void setReactores(Reactor[] reactores) {
+        this.reactores = reactores;
+    }
     
     
     

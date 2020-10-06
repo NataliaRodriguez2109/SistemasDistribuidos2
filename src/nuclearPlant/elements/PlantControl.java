@@ -13,12 +13,12 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
+import nuclearPlant.comunications.Message;
 
 public class PlantControl {
 
     private ServerSocket servidor;
     private Plant planta;
-    
 
     public PlantControl() {
         this.servidor = null;
@@ -40,10 +40,24 @@ public class PlantControl {
             } catch (Exception e) {
                 System.out.println(e.toString());
                 continue;
-            }            
+            }
         }
     }
-    
+
+    public void interpretar(Message me) {
+        Reactor r = planta.getReactor(Integer.parseInt(me.getContenido()[0]));
+        if (me.getContenido()[1].equals("cargar")) {
+            r.chargeReactor(Integer.parseInt(me.getContenido()[2]));
+        } else if (me.getContenido()[1].equals("descargar")) {
+
+        } else if (me.getContenido()[1].equals("encender")) {
+
+        } else if (me.getContenido()[1].equals("apagar")) {
+
+        } else if (me.getContenido()[1].equals("reparar")) {
+
+        }
+    }
 
     public static void main(final String[] arguments) throws IOException {
         new PlantControl().iniciarServidor();

@@ -2,6 +2,7 @@ package nuclearPlant.comunications;
 
 import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import nuclearPlant.tools.IPScanner;
 import java.util.ArrayList;
@@ -80,12 +81,10 @@ public class AdminManager {
         }
     }
 
-    public void emit(final String dirIP) {
-        try {
-
-            final String cadena = "hola";
-            final DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeChars(cadena);            
+    public void emit(Message me) {
+        try {            
+            final ObjectOutputStream dos = new ObjectOutputStream(socket.getOutputStream());
+            dos.writeObject(me);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

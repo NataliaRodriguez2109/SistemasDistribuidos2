@@ -5,21 +5,13 @@
  */
 package nuclearPlant.comunications;
 
-public class Message
-{
-        int puerto;
-        String contenido[] = new String[3];
+public class Message {
 
-        public Message() {
-        }
+    String contenido[] = new String[4];
 
-    public int getPuerto() {
-        return puerto;
+    public Message() {
     }
-
-    public void setPuerto(int puerto) {
-        this.puerto = puerto;
-    }
+    
 
     public String[] getContenido() {
         return contenido;
@@ -28,6 +20,5 @@ public class Message
     public void setContenido(String[] contenido) {
         this.contenido = contenido;
     }
-        
-        
+
 }

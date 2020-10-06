@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
  * @author nata_
  */
 public class Reactor implements Serializable{
-    boolean switchedOn;
-    int charge;
+    private boolean switchedOn;
+    private int charge;
     
-    State state = new State();
+    private State state = new State();
 
     public Reactor() {
         charge = 0;
@@ -65,6 +65,7 @@ public class Reactor implements Serializable{
                 charge = charge + value;   
                 if(charge > 100){
                     state.changeLabel();
+                    charge = 0;
                 }
               
         }else {

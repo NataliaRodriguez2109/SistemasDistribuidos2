@@ -49,9 +49,9 @@ public class PlantControl {
         if (me.getContenido()[1].equals("cargar")) {
             r.chargeReactor(Integer.parseInt(me.getContenido()[2]));
         } else if (me.getContenido()[1].equals("descargar")) {
-
+            
         } else if (me.getContenido()[1].equals("encender")) {
-
+            r.turnOn();
         } else if (me.getContenido()[1].equals("apagar")) {
 
         } else if (me.getContenido()[1].equals("reparar")) {

@@ -5,12 +5,20 @@
  */
 package views;
 
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import nuclearPlant.elements.Reactor;
+
 /**
  *
  * @author Jesus David Otero
  */
 public class ReactorMng extends javax.swing.JPanel {
 
+     Reactor reactor = new Reactor();
+    ImageIcon iconOn = new ImageIcon("src/Images/on.png");
+    ImageIcon iconOff = new ImageIcon("src/Images/off.png");
     /**
      * Creates new form ReactorMng
      */
@@ -27,19 +35,319 @@ public class ReactorMng extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btncargar = new javax.swing.JButton();
+        btndescargar = new javax.swing.JButton();
+        txtCarga = new javax.swing.JTextField();
+        txtDescarga = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        pbCarga = new javax.swing.JProgressBar();
+        onOff = new javax.swing.JToggleButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
+        btnReparar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(255, 209, 1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("Acciones en reactor");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Carga");
+
+        btncargar.setText("Cargar");
+        btncargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncargarActionPerformed(evt);
+            }
+        });
+
+        btndescargar.setText("Descargar");
+        btndescargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndescargarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("%");
+
+        pbCarga.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pbCarga.setForeground(new java.awt.Color(0, 0, 0));
+        pbCarga.setToolTipText("");
+        pbCarga.setStringPainted(true);
+
+        onOff.setForeground(new java.awt.Color(255, 255, 255));
+        onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/off.png"))); // NOI18N
+        onOff.setBorderPainted(false);
+        onOff.setContentAreaFilled(false);
+        onOff.setOpaque(true);
+        onOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onOffActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setText("Estado");
+
+        txtEstado.setEditable(false);
+        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtEstado.setForeground(new java.awt.Color(51, 255, 0));
+        txtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEstado.setName("Funcional"); // NOI18N
+        txtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoActionPerformed(evt);
+            }
+        });
+
+        btnReparar.setText("Reparar");
+        btnReparar.setEnabled(false);
+        btnReparar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRepararActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/carga.png"))); // NOI18N
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/descarga.png"))); // NOI18N
+
+        jLabel6.setText("%");
+
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(260, 260, 260)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40)
+                            .addComponent(onOff, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(btncargar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel9)
+                            .addGap(13, 13, 13)
+                            .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(160, 160, 160)
+                            .addComponent(jLabel7)
+                            .addGap(20, 20, 20)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(btndescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel10)
+                            .addGap(13, 13, 13)
+                            .addComponent(txtDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(240, 240, 240)
+                            .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(310, 310, 310)
+                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addComponent(onOff, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(23, 23, 23)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btncargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(20, 20, 20)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btndescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(50, 50, 50)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(30, 30, 30)
+                    .addComponent(btnCerrar)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        add(jPanel1);
+        jPanel1.setBounds(0, 0, 750, 460);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
+        try{
+            if(Integer.parseInt(txtCarga.getText()) < 0) {
+                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
+                System.out.println(reactor.getCharge());
+                pbCarga.setValue(reactor.getCharge());
+                pbCarga.setString(reactor.getCharge() + "%");
+                if(reactor.getCharge()>100){
+                    JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
+                    pbCarga.setString("!");
+                    pbCarga.setValue(0);
+                    txtEstado.setText(reactor.getState().getLabel());
+                    System.out.println(reactor.getState().getLabel());
+                    onOff.setEnabled(false);
+                    btncargar.setEnabled(false);
+                    btndescargar.setEnabled(false);
+                    txtCarga.setEditable(false);
+                    txtDescarga.setEditable(false);
+                    txtEstado.setForeground(Color.red);
+                    pbCarga.setForeground(Color.red);
+                    btnReparar.setEnabled(true);
+                }
+            }
+        }
+        catch(NumberFormatException e){
+            if(reactor.isSwitchedOn()==false){
+                JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        txtCarga.setText(null);
+    }//GEN-LAST:event_btncargarActionPerformed
+
+    private void btndescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarActionPerformed
+        try{
+            if(Integer.parseInt(txtDescarga.getText()) < 0) {
+                JOptionPane.showMessageDialog(null, "Valor requerido", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
+                System.out.println(reactor.getCharge());
+                pbCarga.setValue(reactor.getCharge());
+                pbCarga.setString(reactor.getCharge() + "%");
+            }
+        }catch(NumberFormatException e){
+            if(reactor.isSwitchedOn()==false){
+                JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        txtDescarga.setText(null);
+    }//GEN-LAST:event_btndescargarActionPerformed
+
+    private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
+
+        if (onOff.isSelected()){
+            onOff.setIcon(iconOn);
+            reactor.turnOn();
+            txtEstado.setText(reactor.getState().getLabel());
+            System.out.println(reactor.isSwitchedOn());
+        }
+        else {
+            onOff.setIcon(iconOff);
+            reactor.turnOff();
+            System.out.println(reactor.isSwitchedOn());
+            txtEstado.setText(null);
+            reactor.setCharge(0);
+            pbCarga.setValue(reactor.getCharge());
+            pbCarga.setString(reactor.getCharge() + "%");
+        }
+    }//GEN-LAST:event_onOffActionPerformed
+
+    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
+
+    }//GEN-LAST:event_txtEstadoActionPerformed
+
+    private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
+        reactor.repair();
+        txtEstado.setText(reactor.getState().getLabel());
+        reactor.setCharge(0);
+        pbCarga.setString(reactor.getCharge() + "%");
+        pbCarga.setValue(reactor.getCharge());
+        onOff.setEnabled(true);
+        txtEstado.setForeground(Color.green);
+        pbCarga.setForeground(Color.black);
+        btncargar.setEnabled(true);
+        btndescargar.setEnabled(true);
+        txtCarga.setEditable(true);
+        txtDescarga.setEditable(true);
+        btnReparar.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Reactor reparado", "Hecho!", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnRepararActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnReparar;
+    private javax.swing.JButton btncargar;
+    private javax.swing.JButton btndescargar;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton onOff;
+    private javax.swing.JProgressBar pbCarga;
+    private javax.swing.JTextField txtCarga;
+    private javax.swing.JTextField txtDescarga;
+    private javax.swing.JTextField txtEstado;
     // End of variables declaration//GEN-END:variables
 }

@@ -53,7 +53,6 @@ public class plantManagement extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -168,11 +167,6 @@ public class plantManagement extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 260, 80);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 780, 460);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,7 +321,6 @@ public class plantManagement extends javax.swing.JFrame {
     private javax.swing.JButton btnReparar;
     private javax.swing.JButton btncargar;
     private javax.swing.JButton btndescargar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -82,7 +82,7 @@ public class Reactor implements Serializable{
             } else
             {
                 if((charge - value) < 0){
-                   // charge = 0;
+                    charge = 0;
                     JOptionPane.showMessageDialog(null, "La carga es de: " + charge + "% el valor ingresado es demasiado alto", "Error", JOptionPane.WARNING_MESSAGE);
                 }else {
                     charge = charge - value; 

@@ -37,7 +37,20 @@ public class ReactorMng extends javax.swing.JPanel {
         labelCarga.setIcon(carga);
         labelDescarga.setIcon(descarga);
         labelLogo.setIcon(logo);
+        initialize(reactor);
     }
+    
+    public void initialize(Reactor reactor){
+        pbCarga.setValue(reactor.getCharge());
+        pbCarga.setString(reactor.getCharge() + "%");
+        txtEstado.setText(reactor.getState().getLabel());
+        if(reactor.isSwitchedOn()){
+            onOff.setIcon(iconOn);
+        }else {
+            onOff.setIcon(iconOff);
+        }
+    }
+    
 
     public Reactor getReactor() {
         return reactor;
@@ -74,7 +87,7 @@ public class ReactorMng extends javax.swing.JPanel {
         labelDescarga = new javax.swing.JLabel();
         btnReparar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        btnCerrar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(750, 460));
@@ -143,10 +156,10 @@ public class ReactorMng extends javax.swing.JPanel {
 
         jLabel6.setText("%");
 
-        btnCerrar.setText("Cerrar");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setText("Atrás");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
@@ -172,7 +185,7 @@ public class ReactorMng extends javax.swing.JPanel {
                             .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelReactorLayout.createSequentialGroup()
                             .addGap(310, 310, 310)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelReactorLayout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -235,7 +248,7 @@ public class ReactorMng extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(30, 30, 30)
-                    .addComponent(btnCerrar)
+                    .addComponent(btnAtras)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -345,13 +358,13 @@ public class ReactorMng extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Reactor reparado", "Hecho!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRepararActionPerformed
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnCerrarActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        this.setEnabled(false);
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnReparar;
     private javax.swing.JButton btncargar;
     private javax.swing.JButton btndescargar;

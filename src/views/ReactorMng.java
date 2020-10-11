@@ -77,6 +77,7 @@ public class ReactorMng extends javax.swing.JPanel {
         btnCerrar = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(750, 460));
         setLayout(null);
 
         panelReactor.setBackground(new java.awt.Color(255, 209, 1));

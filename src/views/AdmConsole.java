@@ -228,13 +228,13 @@ public class AdmConsole extends javax.swing.JFrame {
     private void listaDirsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDirsMouseReleased
         String dirSelected = listaDirs.getSelectedValue();
         admm.conect(dirSelected);
-        pintarPanel(new PlantaGraph(admm.getPlanta()));
+        pintarPanel(new PlantaGraph(admm.getPlanta(), this));
     }//GEN-LAST:event_listaDirsMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        String dirSelected = txtDirPlanta.getText();
-        admm.conect(dirSelected);
-        pintarPanel(new PlantaGraph(admm.getPlanta()));
+       admm.conect(dirSelected);
+       pintarPanel(new PlantaGraph(admm.getPlanta(), this));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

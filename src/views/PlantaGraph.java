@@ -13,20 +13,19 @@ import nuclearPlant.elements.Reactor;
  *
  * @author Jesus David Otero
  */
-public class PlantaGraph extends javax.swing.JPanel {
-    private ReactorMng mng;
-    private boolean pintar;
+public class PlantaGraph extends javax.swing.JPanel {        
     private Plant planta;
     int carga;
     ImageIcon icon = new ImageIcon("src/Images/reactor_1.png");
+    private AdmConsole padre;
     
     /**
      * Creates new form PlantaGraph
      */
-    public PlantaGraph(Plant planta) {
-        pintar = false;
-        this.planta = planta;
+    public PlantaGraph(Plant planta, AdmConsole padre) {
         initComponents();
+        this.planta = planta;
+        this.padre = padre;
         label1.setIcon(icon);
         label2.setIcon(icon);
         label3.setIcon(icon);
@@ -405,15 +404,18 @@ public class PlantaGraph extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReactor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReactor3ActionPerformed
-        mng = new ReactorMng(mng.getReactor(), 1);
+        ReactorMng mng = new ReactorMng(planta.getReactor(1), 1, padre);
+        padre.pintarPanel(mng);
     }//GEN-LAST:event_btnReactor3ActionPerformed
 
     private void btnReactor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReactor1ActionPerformed
-         mng = new ReactorMng(mng.getReactor(), 0);
+         ReactorMng mng = new ReactorMng(planta.getReactor(0), 0, padre);
+         padre.pintarPanel(mng);
     }//GEN-LAST:event_btnReactor1ActionPerformed
 
     private void btnReactor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReactor2ActionPerformed
-        mng = new ReactorMng(mng.getReactor(), 2);
+        ReactorMng mng = new ReactorMng(planta.getReactor(2), 2, padre);
+        padre.pintarPanel(mng);
     }//GEN-LAST:event_btnReactor2ActionPerformed
 
 

@@ -23,12 +23,14 @@ public class ReactorMng extends javax.swing.JPanel {
     ImageIcon carga = new ImageIcon("src/Images/carga.png");
     ImageIcon descarga = new ImageIcon("src/Images/descarga.png");
     ImageIcon logo = new ImageIcon("src/Images/logo.png");
+    AdmConsole padre;
     
     /**
      * Creates new form ReactorMng
      */
-    public ReactorMng(Reactor reactor, int pos) {
+    public ReactorMng(Reactor reactor, int pos, AdmConsole padre) {
         initComponents();
+        this.padre = padre;
         this.reactor = reactor;
         this.pos = pos;
         onOff.setIcon(iconOff);

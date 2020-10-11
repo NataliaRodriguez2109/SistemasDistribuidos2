@@ -39,6 +39,7 @@ public class AdmConsole extends javax.swing.JFrame {
     }
 
     public void pintarPanel(JPanel panel) {
+        panelPlanta.removeAll();
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(panelPlanta);
         panelPlanta.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(

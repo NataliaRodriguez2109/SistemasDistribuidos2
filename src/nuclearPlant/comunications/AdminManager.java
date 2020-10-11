@@ -31,7 +31,7 @@ public class AdminManager {
         public void run() {
             try {
                 new IPScanner();
-                IPScanner.checkHosts("192.168.1", consola.getLista());
+                IPScanner.checkHosts("192.168.56", consola.getLista());//////******192.168.1
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -43,7 +43,7 @@ public class AdminManager {
         public void run() {
             try {
                 new IPScanner();
-                IPScanner.checkHosts("192.168.1", consola.getLista());
+                IPScanner.checkHosts("192.168.56", consola.getLista());//////******
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

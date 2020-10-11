@@ -20,7 +20,7 @@ public class IPScanner {
         DefaultListModel<String> model = new DefaultListModel<>();
         lista.setModel(model);        
         final int timeout = 1000;
-        for (int i = 60; i < 255; ++i) {
+        for (int i = 1; i < 255; ++i) {
             final String ip = subnet + "." + i;
             if (portIsOpen(ip, IPScanner.port, 200)) {
                 System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");

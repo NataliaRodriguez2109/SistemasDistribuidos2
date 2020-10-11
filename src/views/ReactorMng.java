@@ -329,6 +329,7 @@ public class ReactorMng extends javax.swing.JPanel {
 
     private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
         reactor.repair();
+        
         txtEstado.setText(reactor.getState().getLabel());
         reactor.setCharge(0);
         pbCarga.setString(reactor.getCharge() + "%");

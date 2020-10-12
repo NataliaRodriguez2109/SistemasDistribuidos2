@@ -31,6 +31,7 @@ public class HiloEnviar extends Thread {
         try {
             ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
             obj.writeObject(men);
+            obj.close();
             stop();
         } catch (Exception e) {
             System.out.println(e.getMessage());

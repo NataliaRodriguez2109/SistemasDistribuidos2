@@ -46,10 +46,11 @@ public class PlantControl {
                 
                 ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
                 obj.writeObject(planta);
+                obj.close();
                 HiloRecibir hr = new HiloRecibir(cliente, this.planta);
                 hr.run();
                 hrs.add(hr);
-                iniciarServidor();
+                this.servidor = new ServerSocket(32645);
                 System.out.println(hrs.size());
             } catch (Exception e) {
                 System.out.println(e.toString());

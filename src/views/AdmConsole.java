@@ -240,17 +240,17 @@ public class AdmConsole extends javax.swing.JFrame {
     }//GEN-LAST:event_listaDirsMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       try {
-           if(txtDirPlanta.getText().isEmpty()){
-               JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
-           }else {
-               String dirSelected = txtDirPlanta.getText();
-               admm.conect(dirSelected);
-               pintarPanel(new PlantaGraph(admm.getPlanta(), this));
-           }           
-       }catch(NullPointerException e) {
-           JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
-       }
+        try {
+            if (txtDirPlanta.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String dirSelected = txtDirPlanta.getText();
+                admm.conect(dirSelected);
+                pintarPanel(new PlantaGraph(admm.getPlanta(), this));
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

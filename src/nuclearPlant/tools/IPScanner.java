@@ -25,8 +25,6 @@ public class IPScanner {
             if (portIsOpen(ip, IPScanner.port, 200)) {
                 System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");
                 model.add(model.getSize(), ip);
-            } else {
-                System.out.println("The port " + IPScanner.port + " host " + ip + " is OFF (probed with a timeout of " + 200 + "ms)");
             }
         }
     }

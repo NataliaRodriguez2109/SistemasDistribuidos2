@@ -23,7 +23,7 @@ public class MessageProtocol {
             r.chargeReactor(Integer.parseInt(message.getContenido()[2]));
         } else if (message.getContenido()[1].equals("descargar")) {
             r.dischargeReactor(Integer.parseInt(message.getContenido()[2]));
-        } else if (message.getContenido()[1].equals("encender")) {
+        } else if (message.getContenido()[1].equals("encender")) {            
             r.turnOn();
         } else if (message.getContenido()[1].equals("apagar")) {
             r.turnOff();
@@ -42,9 +42,9 @@ public class MessageProtocol {
         } else if (message.getContenido()[1].equals("descargar")) {
             r.dischargeReactor(Integer.parseInt(message.getContenido()[2]));
         } else if (message.getContenido()[1].equals("encender")) {
-            r.turnOn();
+            r.turnOn();            
         } else if (message.getContenido()[1].equals("apagar")) {
-            r.turnOff();
+            r.turnOff();           
         } else if (message.getContenido()[1].equals("reparar")) {
             r.repair();
         }

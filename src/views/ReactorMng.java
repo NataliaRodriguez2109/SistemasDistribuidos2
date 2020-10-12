@@ -333,9 +333,11 @@ public class ReactorMng extends javax.swing.JPanel {
             padre.getAdmm().emit(new Message(contenido));
         }
         else {
-            onOff.setIcon(iconOff);
-            reactor.turnOff();
-            initialize(reactor);
+            String contenido[] = new String[4];
+            contenido[0] = ""+pos;
+            contenido[1] = "apagar";            
+            contenido[3] = "";
+            padre.getAdmm().emit(new Message(contenido));
         }
     }//GEN-LAST:event_onOffActionPerformed
 

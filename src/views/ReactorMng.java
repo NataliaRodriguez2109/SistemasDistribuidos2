@@ -44,6 +44,19 @@ public class ReactorMng extends javax.swing.JPanel {
         pbCarga.setValue(reactor.getCharge());
         pbCarga.setString(reactor.getCharge() + "%");
         txtEstado.setText(reactor.getState().getLabel());
+        if(reactor.getState().getLabel().equals("Dañado")){
+            pbCarga.setString("!");
+            pbCarga.setValue(0);
+            txtEstado.setText(reactor.getState().getLabel());
+            onOff.setEnabled(false);
+            btncargar.setEnabled(false);
+            btndescargar.setEnabled(false);
+            txtCarga.setEditable(false);
+            txtDescarga.setEditable(false);
+            txtEstado.setForeground(Color.red);
+            pbCarga.setForeground(Color.red);
+            btnReparar.setEnabled(true);
+        }
         if(reactor.isSwitchedOn()){
             onOff.setIcon(iconOn);
         }else {
@@ -262,23 +275,10 @@ public class ReactorMng extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
-                System.out.println(reactor.getCharge());
-                pbCarga.setValue(reactor.getCharge());
-                pbCarga.setString(reactor.getCharge() + "%");
+                initialize(reactor);
                 if(reactor.getCharge()>100){
                     JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
-                    pbCarga.setString("!");
-                    pbCarga.setValue(0);
-                    txtEstado.setText(reactor.getState().getLabel());
-                    System.out.println(reactor.getState().getLabel());
-                    onOff.setEnabled(false);
-                    btncargar.setEnabled(false);
-                    btndescargar.setEnabled(false);
-                    txtCarga.setEditable(false);
-                    txtDescarga.setEditable(false);
-                    txtEstado.setForeground(Color.red);
-                    pbCarga.setForeground(Color.red);
-                    btnReparar.setEnabled(true);
+                    initialize(reactor);
                 }
             }
         }
@@ -297,13 +297,11 @@ public class ReactorMng extends javax.swing.JPanel {
     private void btndescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarActionPerformed
         try{
             if(Integer.parseInt(txtDescarga.getText()) < 0) {
-                JOptionPane.showMessageDialog(null, "Valor requerido", "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
                 reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
-                System.out.println(reactor.getCharge());
-                pbCarga.setValue(reactor.getCharge());
-                pbCarga.setString(reactor.getCharge() + "%");
+                initialize(reactor);
             }
         }catch(NumberFormatException e){
             if(reactor.isSwitchedOn()==false){
@@ -320,19 +318,13 @@ public class ReactorMng extends javax.swing.JPanel {
     private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
 
         if (onOff.isSelected()){
-            onOff.setIcon(iconOn);
             reactor.turnOn();
-            txtEstado.setText(reactor.getState().getLabel());
-            System.out.println(reactor.isSwitchedOn());
+            initialize(reactor);
         }
         else {
             onOff.setIcon(iconOff);
             reactor.turnOff();
-            System.out.println(reactor.isSwitchedOn());
-            txtEstado.setText(null);
-            reactor.setCharge(0);
-            pbCarga.setValue(reactor.getCharge());
-            pbCarga.setString(reactor.getCharge() + "%");
+            initialize(reactor);
         }
     }//GEN-LAST:event_onOffActionPerformed
 
@@ -342,24 +334,14 @@ public class ReactorMng extends javax.swing.JPanel {
 
     private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
         reactor.repair();
-        
-        txtEstado.setText(reactor.getState().getLabel());
         reactor.setCharge(0);
-        pbCarga.setString(reactor.getCharge() + "%");
-        pbCarga.setValue(reactor.getCharge());
-        onOff.setEnabled(true);
-        txtEstado.setForeground(Color.green);
-        pbCarga.setForeground(Color.black);
-        btncargar.setEnabled(true);
-        btndescargar.setEnabled(true);
-        txtCarga.setEditable(true);
-        txtDescarga.setEditable(true);
-        btnReparar.setEnabled(false);
+        txtEstado.setText(reactor.getState().getLabel());
+        initialize(reactor);
         JOptionPane.showMessageDialog(null, "Reactor reparado", "Hecho!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRepararActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        this.setEnabled(false);
+        
     }//GEN-LAST:event_btnAtrasActionPerformed
 
 

@@ -19,9 +19,9 @@ import nuclearPlant.elements.Reactor;
  * @author Jesus David Otero
  */
 public class AdmConsole extends javax.swing.JFrame {
-    PlantaGraph pg;
-    AdminManager admm;
-    ImageIcon iconOn = new ImageIcon("src/Images/reload.png");
+    private PlantaGraph pg;
+    private AdminManager admm;
+    private ImageIcon iconOn = new ImageIcon("src/Images/reload.png");
 
     /**
      * Creates new form AdmConsole
@@ -39,6 +39,12 @@ public class AdmConsole extends javax.swing.JFrame {
         return listaDirs;
     }
 
+    public AdminManager getAdmm() {
+        return admm;
+    }
+
+    
+    
     public void pintarPanel(JPanel panel) {
         panelPlanta.removeAll();
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(panelPlanta);

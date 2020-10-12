@@ -9,7 +9,8 @@ public class Message {
 
     String contenido[] = new String[4];
 
-    public Message() {
+    public Message(String[] contenido) {
+        this.contenido = contenido;
     }
     
 

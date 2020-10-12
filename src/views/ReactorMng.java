@@ -8,6 +8,7 @@ package views;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import nuclearPlant.comunications.Message;
 import nuclearPlant.elements.Reactor;
 
 /**
@@ -318,8 +319,9 @@ public class ReactorMng extends javax.swing.JPanel {
     private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
 
         if (onOff.isSelected()){
-            reactor.turnOn();
-            initialize(reactor);
+            String contenido[] = new String[4];
+            contenido[0] = "encender";
+            padre.getAdmm().emit(new Message(contenido));
         }
         else {
             onOff.setIcon(iconOff);

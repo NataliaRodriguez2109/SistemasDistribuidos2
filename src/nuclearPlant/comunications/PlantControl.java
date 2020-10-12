@@ -48,7 +48,8 @@ public class PlantControl {
                 obj.writeObject(planta);
                 HiloRecibir hr = new HiloRecibir(cliente, this.planta);
                 hr.run();
-                hrs.add(hr);                
+                hrs.add(hr);
+                iniciarServidor();
                 System.out.println(hrs.size());
             } catch (Exception e) {
                 System.out.println(e.toString());

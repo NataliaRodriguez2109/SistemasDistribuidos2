@@ -254,8 +254,8 @@ public class AdmConsole extends javax.swing.JFrame {
                 admm.conect(dirSelected);
                 pintarPanel(new PlantaGraph(admm.getPlanta(), this));
             }
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString(), "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

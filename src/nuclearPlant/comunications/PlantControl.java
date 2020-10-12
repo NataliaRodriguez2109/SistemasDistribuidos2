@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import nuclearPlant.comunications.Message;
 import nuclearPlant.elements.Plant;
 import nuclearPlant.elements.Reactor;
+import nuclearPlant.tools.HiloEnviar;
 import nuclearPlant.tools.HiloRecibir;
 import nuclearPlant.tools.IPScanner;
 
@@ -42,11 +43,13 @@ public class PlantControl {
         while (true) {
             try {
                 final Socket cliente = this.servidor.accept();
+                
                 ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
                 obj.writeObject(planta);
                 HiloRecibir hr = new HiloRecibir(cliente, this.planta);
                 hr.run();
-                hrs.add(hr);
+                hrs.add(hr);                
+                System.out.println(hrs.size());
             } catch (Exception e) {
                 System.out.println(e.toString());
 
@@ -57,9 +60,7 @@ public class PlantControl {
     
     public void emit(Socket cliente, Message men){
         try {
-            final ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
-            dos.writeObject(men);
-            
+            HiloEnviar he = new HiloEnviar(cliente, men);                        
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

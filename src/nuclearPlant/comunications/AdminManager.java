@@ -7,6 +7,7 @@ import java.net.Socket;
 import nuclearPlant.tools.IPScanner;
 import java.util.ArrayList;
 import nuclearPlant.elements.Plant;
+import nuclearPlant.tools.HiloEnviar;
 import views.AdmConsole;
 
 public class AdminManager {
@@ -31,7 +32,7 @@ public class AdminManager {
         public void run() {
             try {
                 new IPScanner();
-                IPScanner.checkHosts("192.168.56", consola.getLista());//////******192.168.1
+                IPScanner.checkHosts("192.168.1", consola.getLista());//////******192.168.1
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -87,8 +88,8 @@ public class AdminManager {
 
     public void emit(Message me) {
         try {
-            final ObjectOutputStream dos = new ObjectOutputStream(socket.getOutputStream());
-            dos.writeObject(me);
+            HiloEnviar he = new HiloEnviar(socket, me);
+            he.run();            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

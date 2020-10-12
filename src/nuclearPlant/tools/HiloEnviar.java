@@ -6,7 +6,7 @@
 package nuclearPlant.tools;
 
 import java.io.ObjectInputStream;
-import java.net.ServerSocket;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import nuclearPlant.comunications.Message;
 import nuclearPlant.comunications.MessageProtocol;
@@ -16,36 +16,28 @@ import nuclearPlant.elements.Plant;
  *
  * @author Jesus David Otero
  */
-public class HiloRecibir extends Thread {
+public class HiloEnviar extends Thread {
 
-    Socket cliente;
-    Plant planta;
+    private Socket cliente;
+    private Message men;
 
-    public HiloRecibir(Socket cliente, Plant planta) {
+    public HiloEnviar(Socket cliente, Message men) {
         this.cliente = cliente;
-        this.planta = planta;
+        this.men = men;
     }
 
     @Override
     public void run() {
-
         try {
-            ObjectInputStream obj = new ObjectInputStream(cliente.getInputStream());
-            Message men = (Message) obj.readObject();
-            System.out.println(men.getContenido()[0]);
-            MessageProtocol.interpretar(planta, men);
-            new HiloRecibir(cliente, planta);
+            ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
+            obj.writeObject(men);
+            stop();
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
-
     }
 
     public Socket getCliente() {
         return cliente;
     }
-
-    public Plant getPlanta() {
-        return planta;
-    }
-}
+};

@@ -320,7 +320,8 @@ public class ReactorMng extends javax.swing.JPanel {
 
         if (onOff.isSelected()){
             String contenido[] = new String[4];
-            contenido[0] = "encender";
+            contenido[0] = ""+pos;
+            contenido[1] = "encender";
             padre.getAdmm().emit(new Message(contenido));
         }
         else {

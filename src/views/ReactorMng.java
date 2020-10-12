@@ -297,7 +297,7 @@ public class ReactorMng extends javax.swing.JPanel {
     private void btndescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarActionPerformed
         try{
             if(Integer.parseInt(txtDescarga.getText()) < 0) {
-                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error: valor no válido", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
                 reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));

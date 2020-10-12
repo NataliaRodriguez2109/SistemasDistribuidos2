@@ -8,6 +8,7 @@ import nuclearPlant.tools.IPScanner;
 import java.util.ArrayList;
 import nuclearPlant.elements.Plant;
 import nuclearPlant.tools.HiloEnviar;
+import nuclearPlant.tools.HiloRecibir;
 import views.AdmConsole;
 
 public class AdminManager {
@@ -39,24 +40,7 @@ public class AdminManager {
         }
     };
 
-    public class HiloControlPlanta extends Thread {
-
-        Message mensaje;
-
-        public HiloControlPlanta(Message mensaje) {
-            this.mensaje = mensaje;
-        }
-
-        @Override
-        public void run() {
-            try {
-                emit(mensaje);
-                stop();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    };
+    
 
     public void conect(String dirIP) {
         try {
@@ -65,6 +49,8 @@ public class AdminManager {
             socket.setKeepAlive(true);
             ObjectInputStream perEnt = new ObjectInputStream(socket.getInputStream());
             planta = (Plant) perEnt.readObject();
+            HiloRecibir hr = new HiloRecibir(socket, planta, consola);            
+            hr.start();            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

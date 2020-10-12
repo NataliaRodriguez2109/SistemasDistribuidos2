@@ -28,13 +28,12 @@ public class HiloEnviar extends Thread {
 
     @Override
     public void run() {
-        try {
+        try {            
             ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
             obj.writeObject(men);
-            obj.close();
             stop();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + "hola");
         }
     }
 

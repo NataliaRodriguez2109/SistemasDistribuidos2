@@ -23,6 +23,7 @@ public class AdmConsole extends javax.swing.JFrame {
     private AdminManager admm;
     private ImageIcon iconOn = new ImageIcon("src/Images/reload.png");
 
+    private JPanel panel;
     /**
      * Creates new form AdmConsole
      */
@@ -32,6 +33,7 @@ public class AdmConsole extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         admm = new AdminManager(this);
         btnReload.setIcon(iconOn);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         
     }
 
@@ -42,10 +44,15 @@ public class AdmConsole extends javax.swing.JFrame {
     public AdminManager getAdmm() {
         return admm;
     }
+    
+    public JPanel getPanel(){
+        return panel;
+    }
 
     
     
     public void pintarPanel(JPanel panel) {
+        this.panel = panel;
         panelPlanta.removeAll();
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(panelPlanta);
         panelPlanta.setLayout(jPanel3Layout);
@@ -212,6 +219,8 @@ public class AdmConsole extends javax.swing.JFrame {
                         .addComponent(btnClose)
                         .addGap(26, 26, 26))))
         );
+
+        panelPlanta.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

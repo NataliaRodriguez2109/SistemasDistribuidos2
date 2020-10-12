@@ -8,9 +8,12 @@ package nuclearPlant.tools;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import nuclearPlant.comunications.AdminManager;
 import nuclearPlant.comunications.Message;
 import nuclearPlant.comunications.MessageProtocol;
+import nuclearPlant.comunications.PlantControl;
 import nuclearPlant.elements.Plant;
+import views.AdmConsole;
 
 /**
  *
@@ -18,24 +21,39 @@ import nuclearPlant.elements.Plant;
  */
 public class HiloRecibir extends Thread {
 
-    Socket cliente;
-    Plant planta;
+    private Socket cliente;
+    private Plant planta;
+    private Message men;
+    private AdmConsole adm;
+    private PlantControl control;
 
-    public HiloRecibir(Socket cliente, Plant planta) {
+    public HiloRecibir(Socket cliente, Plant planta, PlantControl control) {
         this.cliente = cliente;
         this.planta = planta;
+        this.control = control;
+    }
+
+    public HiloRecibir(Socket cliente, Plant planta, AdmConsole adm) {
+        this.cliente = cliente;
+        this.planta = planta;
+        this.adm = adm;
     }
 
     @Override
     public void run() {
-
-        try {
-            ObjectInputStream obj = new ObjectInputStream(cliente.getInputStream());
-            Message men = (Message) obj.readObject();
-            System.out.println(men.getContenido()[0]);
-            MessageProtocol.interpretar(planta, men);            
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        while (true) {
+            try {
+                ObjectInputStream obj = new ObjectInputStream(cliente.getInputStream());
+                men = (Message) obj.readObject();
+                System.out.println(men.getContenido()[0]);
+                if (control == null) {
+                    MessageProtocol.interpretar(planta, men, adm);
+                } else {
+                    MessageProtocol.interpretar(planta, men, control);
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
 
     }
@@ -47,4 +65,9 @@ public class HiloRecibir extends Thread {
     public Plant getPlanta() {
         return planta;
     }
+
+    public Message getMen() {
+        return men;
+    }
+
 }

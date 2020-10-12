@@ -40,6 +40,12 @@ public class ReactorMng extends javax.swing.JPanel {
         labelLogo.setIcon(logo);
         initialize(reactor);
     }
+
+    public int getPos() {
+        return pos;
+    }
+    
+    
     
     public void initialize(Reactor reactor){
         pbCarga.setValue(reactor.getCharge());
@@ -72,6 +78,7 @@ public class ReactorMng extends javax.swing.JPanel {
 
     public void setReactor(Reactor reactor) {
         this.reactor = reactor;
+        initialize(reactor);
     }
     
     
@@ -322,6 +329,7 @@ public class ReactorMng extends javax.swing.JPanel {
             String contenido[] = new String[4];
             contenido[0] = ""+pos;
             contenido[1] = "encender";
+            contenido[3] = "";
             padre.getAdmm().emit(new Message(contenido));
         }
         else {

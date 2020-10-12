@@ -26,7 +26,7 @@ public class PlantControl {
 
     private ServerSocket servidor;
     private Plant planta;
-    private ArrayList<HiloRecibir> hrs;
+    private ArrayList<Socket> hrs;
 
     public PlantControl() {
         this.servidor = null;
@@ -39,29 +39,39 @@ public class PlantControl {
         }
     }
 
+    public ArrayList<Socket> getHrs() {
+        return hrs;
+    }
+    
+    
+
     public void iniciarServidor() {
         while (true) {
-            try {
-                System.out.println("ey2");
+            try {                
                 final Socket cliente = this.servidor.accept();                
                 ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
-                obj.writeObject(planta);                
-                HiloRecibir hr = new HiloRecibir(cliente, this.planta);
+                obj.writeObject(planta);                   
+                HiloRecibir hr = new HiloRecibir(cliente, this.planta, this);
                 hr.start();
-                hrs.add(hr);             
+                hrs.add(cliente);             
                 System.out.println(hrs.size());
             } catch (Exception e) {
-                System.out.println(e.toString() + "hola1");
+                System.out.println(e.toString());
 
-            }
-            System.out.println("ey");
+            }            
         }
     }          
     
+    public void updateAll(Message men){
+        for (int i = 0; i < hrs.size(); i++) {
+            emit(hrs.get(i), men);
+        }
+    }
     
     public void emit(Socket cliente, Message men){
         try {
-            HiloEnviar he = new HiloEnviar(cliente, men);                        
+            HiloEnviar he = new HiloEnviar(cliente, men);  
+            he.start();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

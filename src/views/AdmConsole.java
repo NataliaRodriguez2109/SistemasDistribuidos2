@@ -244,14 +244,9 @@ public class AdmConsole extends javax.swing.JFrame {
            if(txtDirPlanta.getText().isEmpty()){
                JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
            }else {
-               if(txtDirPlanta.getText().equals(listaDirs)){
-                   String dirSelected = txtDirPlanta.getText();
+               String dirSelected = txtDirPlanta.getText();
                admm.conect(dirSelected);
                pintarPanel(new PlantaGraph(admm.getPlanta(), this));
-               }else {
-                   JOptionPane.showMessageDialog(null, "No se encontró la dirección", "Error", JOptionPane.ERROR_MESSAGE);
-               }
-               
            }           
        }catch(NullPointerException e) {
            JOptionPane.showMessageDialog(null, "Debe ingresar una dirección", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);

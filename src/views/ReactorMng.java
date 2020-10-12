@@ -37,7 +37,33 @@ public class ReactorMng extends javax.swing.JPanel {
         labelCarga.setIcon(carga);
         labelDescarga.setIcon(descarga);
         labelLogo.setIcon(logo);
+        initialize(reactor);
     }
+    
+    public void initialize(Reactor reactor){
+        pbCarga.setValue(reactor.getCharge());
+        pbCarga.setString(reactor.getCharge() + "%");
+        txtEstado.setText(reactor.getState().getLabel());
+        if(reactor.getState().getLabel().equals("Dañado")){
+            pbCarga.setString("!");
+            pbCarga.setValue(0);
+            txtEstado.setText(reactor.getState().getLabel());
+            onOff.setEnabled(false);
+            btncargar.setEnabled(false);
+            btndescargar.setEnabled(false);
+            txtCarga.setEditable(false);
+            txtDescarga.setEditable(false);
+            txtEstado.setForeground(Color.red);
+            pbCarga.setForeground(Color.red);
+            btnReparar.setEnabled(true);
+        }
+        if(reactor.isSwitchedOn()){
+            onOff.setIcon(iconOn);
+        }else {
+            onOff.setIcon(iconOff);
+        }
+    }
+    
 
     public Reactor getReactor() {
         return reactor;
@@ -74,7 +100,7 @@ public class ReactorMng extends javax.swing.JPanel {
         labelDescarga = new javax.swing.JLabel();
         btnReparar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        btnCerrar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(750, 460));
@@ -143,10 +169,10 @@ public class ReactorMng extends javax.swing.JPanel {
 
         jLabel6.setText("%");
 
-        btnCerrar.setText("Cerrar");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setText("Atrás");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
@@ -172,7 +198,7 @@ public class ReactorMng extends javax.swing.JPanel {
                             .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelReactorLayout.createSequentialGroup()
                             .addGap(310, 310, 310)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelReactorLayout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -235,7 +261,7 @@ public class ReactorMng extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(30, 30, 30)
-                    .addComponent(btnCerrar)
+                    .addComponent(btnAtras)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -249,23 +275,10 @@ public class ReactorMng extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
-                System.out.println(reactor.getCharge());
-                pbCarga.setValue(reactor.getCharge());
-                pbCarga.setString(reactor.getCharge() + "%");
+                initialize(reactor);
                 if(reactor.getCharge()>100){
                     JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
-                    pbCarga.setString("!");
-                    pbCarga.setValue(0);
-                    txtEstado.setText(reactor.getState().getLabel());
-                    System.out.println(reactor.getState().getLabel());
-                    onOff.setEnabled(false);
-                    btncargar.setEnabled(false);
-                    btndescargar.setEnabled(false);
-                    txtCarga.setEditable(false);
-                    txtDescarga.setEditable(false);
-                    txtEstado.setForeground(Color.red);
-                    pbCarga.setForeground(Color.red);
-                    btnReparar.setEnabled(true);
+                    initialize(reactor);
                 }
             }
         }
@@ -284,13 +297,11 @@ public class ReactorMng extends javax.swing.JPanel {
     private void btndescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarActionPerformed
         try{
             if(Integer.parseInt(txtDescarga.getText()) < 0) {
-                JOptionPane.showMessageDialog(null, "Valor requerido", "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
                 reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
-                System.out.println(reactor.getCharge());
-                pbCarga.setValue(reactor.getCharge());
-                pbCarga.setString(reactor.getCharge() + "%");
+                initialize(reactor);
             }
         }catch(NumberFormatException e){
             if(reactor.isSwitchedOn()==false){
@@ -307,19 +318,13 @@ public class ReactorMng extends javax.swing.JPanel {
     private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
 
         if (onOff.isSelected()){
-            onOff.setIcon(iconOn);
             reactor.turnOn();
-            txtEstado.setText(reactor.getState().getLabel());
-            System.out.println(reactor.isSwitchedOn());
+            initialize(reactor);
         }
         else {
             onOff.setIcon(iconOff);
             reactor.turnOff();
-            System.out.println(reactor.isSwitchedOn());
-            txtEstado.setText(null);
-            reactor.setCharge(0);
-            pbCarga.setValue(reactor.getCharge());
-            pbCarga.setString(reactor.getCharge() + "%");
+            initialize(reactor);
         }
     }//GEN-LAST:event_onOffActionPerformed
 
@@ -329,29 +334,19 @@ public class ReactorMng extends javax.swing.JPanel {
 
     private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
         reactor.repair();
-        
-        txtEstado.setText(reactor.getState().getLabel());
         reactor.setCharge(0);
-        pbCarga.setString(reactor.getCharge() + "%");
-        pbCarga.setValue(reactor.getCharge());
-        onOff.setEnabled(true);
-        txtEstado.setForeground(Color.green);
-        pbCarga.setForeground(Color.black);
-        btncargar.setEnabled(true);
-        btndescargar.setEnabled(true);
-        txtCarga.setEditable(true);
-        txtDescarga.setEditable(true);
-        btnReparar.setEnabled(false);
+        txtEstado.setText(reactor.getState().getLabel());
+        initialize(reactor);
         JOptionPane.showMessageDialog(null, "Reactor reparado", "Hecho!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRepararActionPerformed
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnCerrarActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnReparar;
     private javax.swing.JButton btncargar;
     private javax.swing.JButton btndescargar;

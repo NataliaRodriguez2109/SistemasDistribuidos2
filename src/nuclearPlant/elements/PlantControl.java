@@ -55,7 +55,7 @@ public class PlantControl {
         } else if (me.getContenido()[1].equals("apagar")) {
 
         } else if (me.getContenido()[1].equals("reparar")) {
-
+            
         }
     }
 

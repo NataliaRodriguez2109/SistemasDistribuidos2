@@ -64,15 +64,17 @@ public class Reactor implements Serializable{
                 
                 charge = charge + value;   
                 if(charge > 100){
-                    state.changeLabel();
-                    charge = 0;
+                    dañar();
                 }
-              
         }else {
             JOptionPane.showMessageDialog(null, "El reactor se encuentra apagado, debe encender antes de cargar", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        
         return charge;
+    }
+    
+    public void dañar(){
+        state.changeLabel();
+        //charge = 0;
     }
     
     public int dischargeReactor(int value) {
@@ -82,7 +84,7 @@ public class Reactor implements Serializable{
             } else
             {
                 if((charge - value) < 0){
-                   // charge = 0;
+                    charge = 0;
                     JOptionPane.showMessageDialog(null, "La carga es de: " + charge + "% el valor ingresado es demasiado alto", "Error", JOptionPane.WARNING_MESSAGE);
                 }else {
                     charge = charge - value; 

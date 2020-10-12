@@ -15,7 +15,7 @@ public class AdminManager {
     private ArrayList<String> dirs;
     private int port;
     private AdmConsole consola;
-    Plant planta;
+    private Plant planta;
 
     public AdminManager(AdmConsole consola) {
 
@@ -37,13 +37,20 @@ public class AdminManager {
             }
         }
     };
-    public class HiloOperacion extends Thread {
+
+    public class HiloControlPlanta extends Thread {
+
+        Message mensaje;
+
+        public HiloControlPlanta(Message mensaje) {
+            this.mensaje = mensaje;
+        }
 
         @Override
         public void run() {
             try {
-                new IPScanner();
-                IPScanner.checkHosts("192.168.1", consola.getLista());//////******
+                emit(mensaje);
+                stop();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -56,7 +63,7 @@ public class AdminManager {
             socket.setSoTimeout(2000);
             socket.setKeepAlive(true);
             ObjectInputStream perEnt = new ObjectInputStream(socket.getInputStream());
-            planta = (Plant) perEnt.readObject();            
+            planta = (Plant) perEnt.readObject();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -69,27 +76,23 @@ public class AdminManager {
     public Plant getPlanta() {
         return planta;
     }
-    
-     
-    
-    
-    public void disConect(){
-        try{            
+
+    public void disConect() {
+        try {
             socket.close();
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error al desconectar");
         }
     }
 
     public void emit(Message me) {
-        try {            
+        try {
             final ObjectOutputStream dos = new ObjectOutputStream(socket.getOutputStream());
             dos.writeObject(me);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-        
 
     public ArrayList<String> getDirs() {
         return this.dirs;

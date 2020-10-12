@@ -42,20 +42,19 @@ public class PlantControl {
     public void iniciarServidor() {
         while (true) {
             try {
-                final Socket cliente = this.servidor.accept();
-                
+                System.out.println("ey2");
+                final Socket cliente = this.servidor.accept();                
                 ObjectOutputStream obj = new ObjectOutputStream(cliente.getOutputStream());
-                obj.writeObject(planta);
-                obj.close();
+                obj.writeObject(planta);                
                 HiloRecibir hr = new HiloRecibir(cliente, this.planta);
-                hr.run();
-                hrs.add(hr);
-                this.servidor = new ServerSocket(32645);
+                hr.start();
+                hrs.add(hr);             
                 System.out.println(hrs.size());
             } catch (Exception e) {
-                System.out.println(e.toString());
+                System.out.println(e.toString() + "hola1");
 
             }
+            System.out.println("ey");
         }
     }          
     

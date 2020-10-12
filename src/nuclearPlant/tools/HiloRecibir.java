@@ -33,8 +33,7 @@ public class HiloRecibir extends Thread {
             ObjectInputStream obj = new ObjectInputStream(cliente.getInputStream());
             Message men = (Message) obj.readObject();
             System.out.println(men.getContenido()[0]);
-            MessageProtocol.interpretar(planta, men);
-            new HiloRecibir(cliente, planta);
+            MessageProtocol.interpretar(planta, men);            
         } catch (Exception e) {
             System.out.println(e.toString());
         }

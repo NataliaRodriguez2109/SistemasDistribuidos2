@@ -20,11 +20,13 @@ public class IPScanner {
         DefaultListModel<String> model = new DefaultListModel<>();
         lista.setModel(model);        
         final int timeout = 1000;
-        for (int i = 59; i < 255; ++i) {
-            final String ip = subnet + "." + i;
-            if (portIsOpen(ip, IPScanner.port, 200)) {
-                System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");
-                model.add(model.getSize(), ip);
+        for (int j = 200; j < 254; j++) {
+            for (int i = 200; i < 255; ++i) {
+                final String ip = subnet + "." + i+"."+j;
+                if (portIsOpen(ip, IPScanner.port, 200)) {
+                    System.out.println("The port " + IPScanner.port + " host " + ip + " is ON (probed with a timeout of " + 200 + "ms)");
+                    model.add(model.getSize(), ip);
+                }
             }
         }
     }

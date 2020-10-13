@@ -9,6 +9,7 @@ import nuclearPlant.elements.Plant;
 import nuclearPlant.elements.Reactor;
 import nuclearPlant.tools.HiloEnviar;
 import views.AdmConsole;
+import views.PlantaGraph;
 import views.ReactorMng;
 
 /**
@@ -52,6 +53,9 @@ public class MessageProtocol {
         if(padre.getPanel().getClass().getName().contains("Reactor")){
             ReactorMng  rm = (ReactorMng)padre.getPanel();
             rm.setReactor(padre.getAdmm().getPlanta().getReactor(rm.getPos()));
+        } else if(padre.getPanel().getClass().getName().contains("Planta")){
+            PlantaGraph pg = (PlantaGraph) padre.getPanel();
+            pg.initialize(padre.getAdmm().getPlanta());
         }
     }
     

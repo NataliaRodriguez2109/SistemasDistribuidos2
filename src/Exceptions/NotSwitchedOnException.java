@@ -5,6 +5,8 @@
  */
 package Exceptions;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nata_
@@ -12,7 +14,7 @@ package Exceptions;
 public class NotSwitchedOnException extends RuntimeException{
 
     public NotSwitchedOnException(String mesg) {
-        super(mesg);
+        JOptionPane.showMessageDialog(null, mesg, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
 }

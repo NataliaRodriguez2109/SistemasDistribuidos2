@@ -29,23 +29,20 @@ public class ReactorMng extends javax.swing.JPanel {
     ImageIcon descarga = new ImageIcon("src/Images/descarga.png");
     ImageIcon logo = new ImageIcon("src/Images/logo.png");
     AdmConsole padre;
-    final JDialog dialog;
 
     
     /**
      * Creates new form ReactorMng
      */
     public ReactorMng(Reactor reactor, int pos, AdmConsole padre) {
-        initComponents();
-        dialog = new JDialog(); 
+        initComponents();        
         this.padre = padre;
         this.reactor = reactor;
         this.pos = pos;
         onOff.setIcon(iconOff);
         labelCarga.setIcon(carga);
         labelDescarga.setIcon(descarga);
-        labelLogo.setIcon(logo);
-        dialog.setAlwaysOnTop(true); 
+        labelLogo.setIcon(logo);        
         initialize(reactor);
     }
 
@@ -208,7 +205,7 @@ public class ReactorMng extends javax.swing.JPanel {
         panelReactor.setLayout(panelReactorLayout);
         panelReactorLayout.setHorizontalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -258,10 +255,10 @@ public class ReactorMng extends javax.swing.JPanel {
         );
         panelReactorLayout.setVerticalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 23, Short.MAX_VALUE)
                     .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
                     .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,11 +287,11 @@ public class ReactorMng extends javax.swing.JPanel {
                         .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(30, 30, 30)
                     .addComponent(btnAtras)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 24, Short.MAX_VALUE)))
         );
 
         add(panelReactor);
-        panelReactor.setBounds(10, 10, 730, 430);
+        panelReactor.setBounds(0, 0, 750, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
@@ -309,7 +306,7 @@ public class ReactorMng extends javax.swing.JPanel {
                 contenido[3] = "";
                 padre.getAdmm().emit(new Message(contenido));
                 if(reactor.getCharge()>100){
-                    JOptionPane.showMessageDialog(dialog, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
                     initialize(reactor);
                 }
             }
@@ -319,10 +316,12 @@ public class ReactorMng extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+                //JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
             }
-//        }catch(NotSwitchedOnException e){
-//            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+        }catch(NotSwitchedOnException e){
+            System.out.println(e.getMessage());
+            //JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
         }
         txtCarga.setText(null);
     }//GEN-LAST:event_btncargarActionPerformed
@@ -347,14 +346,13 @@ public class ReactorMng extends javax.swing.JPanel {
             else {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
             }
-//        }catch(NotSwitchedOnException e){
-//            if(reactor.isSwitchedOn() == false){
-//                JOptionPane.showMessageDialog(dialog, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
-//            }            
-//        }catch (AlreadyDischargeException e) {
-//            if(reactor.getCharge() == 0){
-//                JOptionPane.showMessageDialog(dialog, "El reactor ya está completamente descargado", "Error", JOptionPane.WARNING_MESSAGE);
-//            }            
+        }catch(NotSwitchedOnException e){
+            System.out.println(e.getMessage());
+            //JOptionPane.showMessageDialog(dialog, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+                        
+        }catch (AlreadyDischargeException e) {
+            System.out.println(e.getMessage());
+            //JOptionPane.showMessageDialog(null, "El reactor ya está completamente descargado", "Error", JOptionPane.WARNING_MESSAGE);
         } 
         txtDescarga.setText(null);
     }//GEN-LAST:event_btndescargarActionPerformed

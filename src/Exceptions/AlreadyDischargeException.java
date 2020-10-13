@@ -5,6 +5,8 @@
  */
 package Exceptions;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nata_
@@ -12,6 +14,6 @@ package Exceptions;
 public class AlreadyDischargeException extends RuntimeException{
 
     public AlreadyDischargeException(String mesg) {
-        super(mesg);
+        JOptionPane.showMessageDialog(null, mesg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

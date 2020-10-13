@@ -71,8 +71,8 @@ public class Reactor implements Serializable{
                     charge = 0;
                 }
         }else {
-            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
-            //throw new NotSwitchedOnException("Debe encender el reactor e ingresar un valor");
+            //JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            throw new NotSwitchedOnException("Debe encender el reactor e ingresar un valor");
         }
         return charge;
     }
@@ -85,8 +85,8 @@ public class Reactor implements Serializable{
     public int dischargeReactor(int value) {
         if (switchedOn == true) {
                 if (charge == 0) {
-                JOptionPane.showMessageDialog(null, "El reactor ya está totalmente descargado", "Error", JOptionPane.ERROR_MESSAGE);
-                //throw new AlreadyDischargeException("Ya está completamente descargado");
+                //JOptionPane.showMessageDialog(null, "El reactor ya está totalmente descargado", "Error", JOptionPane.ERROR_MESSAGE);
+                throw new AlreadyDischargeException("Ya está completamente descargado");
             } else
             {
                 if((charge - value) < 0){
@@ -97,8 +97,8 @@ public class Reactor implements Serializable{
                 }     
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
-            //throw new NotSwitchedOnException("No se ha encendido el reactor");            
+            //JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            throw new NotSwitchedOnException("No se ha encendido el reactor");            
         }
         return charge;
     }

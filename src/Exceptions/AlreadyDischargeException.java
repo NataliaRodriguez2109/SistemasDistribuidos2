@@ -14,7 +14,4 @@ public class AlreadyDischargeException extends RuntimeException{
     public AlreadyDischargeException(String mesg) {
         super(mesg);
     }
-    
-    
-    
 }

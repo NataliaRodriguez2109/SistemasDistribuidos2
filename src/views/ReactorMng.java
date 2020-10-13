@@ -5,8 +5,12 @@
  */
 package views;
 
+import Exceptions.AlreadyDischargeException;
+import Exceptions.NotSwitchedOnException;
 import java.awt.Color;
+import java.util.function.Supplier;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import nuclearPlant.comunications.Message;
 import nuclearPlant.elements.Reactor;
@@ -25,12 +29,15 @@ public class ReactorMng extends javax.swing.JPanel {
     ImageIcon descarga = new ImageIcon("src/Images/descarga.png");
     ImageIcon logo = new ImageIcon("src/Images/logo.png");
     AdmConsole padre;
+    final JDialog dialog;
+
     
     /**
      * Creates new form ReactorMng
      */
     public ReactorMng(Reactor reactor, int pos, AdmConsole padre) {
         initComponents();
+        dialog = new JDialog(); 
         this.padre = padre;
         this.reactor = reactor;
         this.pos = pos;
@@ -38,6 +45,7 @@ public class ReactorMng extends javax.swing.JPanel {
         labelCarga.setIcon(carga);
         labelDescarga.setIcon(descarga);
         labelLogo.setIcon(logo);
+        dialog.setAlwaysOnTop(true); 
         initialize(reactor);
     }
 
@@ -49,36 +57,37 @@ public class ReactorMng extends javax.swing.JPanel {
     
     public void initialize(Reactor reactor){
         
-        if(reactor.getState().getLabel().equals("Dañado")){
-            pbCarga.setString("!");
-            pbCarga.setValue(0);
-            txtEstado.setText(reactor.getState().getLabel());
-            onOff.setEnabled(false);
-            btncargar.setEnabled(false);
-            btndescargar.setEnabled(false);
-            txtCarga.setEditable(false);
-            txtDescarga.setEditable(false);
-            txtEstado.setForeground(Color.red);
-            pbCarga.setForeground(Color.red);
-            btnReparar.setEnabled(true);
-        }else {
-            pbCarga.setValue(reactor.getCharge());
-            pbCarga.setString(reactor.getCharge() + "%");
-            txtEstado.setText(reactor.getState().getLabel());
-            txtEstado.setForeground(Color.green);
-            pbCarga.setForeground(Color.black);
-            onOff.setEnabled(true);
-            btncargar.setEnabled(true);
-            btndescargar.setEnabled(true);
-            txtCarga.setEditable(true);
-            txtDescarga.setEditable(true);
-            btnReparar.setEnabled(false);
-            if(reactor.isSwitchedOn()){
-                onOff.setIcon(iconOn);
+            if(reactor.getState().getLabel().equals("Dañado")){
+                pbCarga.setString("!");
+                pbCarga.setValue(0);
+                txtEstado.setText(reactor.getState().getLabel());
+                onOff.setEnabled(false);
+                btncargar.setEnabled(false);
+                btndescargar.setEnabled(false);
+                txtCarga.setEditable(false);
+                txtDescarga.setEditable(false);
+                txtEstado.setForeground(Color.red);
+                pbCarga.setForeground(Color.red);
+                btnReparar.setEnabled(true);
             }else {
-                onOff.setIcon(iconOff);
-        }
-        }
+                pbCarga.setValue(reactor.getCharge());
+                pbCarga.setString(reactor.getCharge() + "%");
+                txtEstado.setText(reactor.getState().getLabel());
+                txtEstado.setForeground(Color.green);
+                pbCarga.setForeground(Color.black);
+                onOff.setEnabled(true);
+                btncargar.setEnabled(true);
+                btndescargar.setEnabled(true);
+                txtCarga.setEditable(true);
+                txtDescarga.setEditable(true);
+                btnReparar.setEnabled(false);
+                if(reactor.isSwitchedOn()){
+                    onOff.setIcon(iconOn);
+                }else {
+                    onOff.setIcon(iconOff);
+                }
+            }
+              
         
     }
     
@@ -199,7 +208,7 @@ public class ReactorMng extends javax.swing.JPanel {
         panelReactor.setLayout(panelReactorLayout);
         panelReactorLayout.setHorizontalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 730, Short.MAX_VALUE)
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -249,7 +258,7 @@ public class ReactorMng extends javax.swing.JPanel {
         );
         panelReactorLayout.setVerticalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -285,7 +294,7 @@ public class ReactorMng extends javax.swing.JPanel {
         );
 
         add(panelReactor);
-        panelReactor.setBounds(0, 0, 750, 460);
+        panelReactor.setBounds(10, 10, 730, 430);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
@@ -300,7 +309,7 @@ public class ReactorMng extends javax.swing.JPanel {
                 contenido[3] = "";
                 padre.getAdmm().emit(new Message(contenido));
                 if(reactor.getCharge()>100){
-                    JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dialog, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
                     initialize(reactor);
                 }
             }
@@ -312,7 +321,8 @@ public class ReactorMng extends javax.swing.JPanel {
             else {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
             }
-
+//        }catch(NotSwitchedOnException e){
+//            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
         }
         txtCarga.setText(null);
     }//GEN-LAST:event_btncargarActionPerformed
@@ -337,8 +347,15 @@ public class ReactorMng extends javax.swing.JPanel {
             else {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
             }
-
-        }
+//        }catch(NotSwitchedOnException e){
+//            if(reactor.isSwitchedOn() == false){
+//                JOptionPane.showMessageDialog(dialog, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+//            }            
+//        }catch (AlreadyDischargeException e) {
+//            if(reactor.getCharge() == 0){
+//                JOptionPane.showMessageDialog(dialog, "El reactor ya está completamente descargado", "Error", JOptionPane.WARNING_MESSAGE);
+//            }            
+        } 
         txtDescarga.setText(null);
     }//GEN-LAST:event_btndescargarActionPerformed
 

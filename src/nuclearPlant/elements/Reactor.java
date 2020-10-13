@@ -5,6 +5,7 @@
  */
 package nuclearPlant.elements;
 
+import Exceptions.AlreadyDischargeException;
 import Exceptions.NotSwitchedOnException;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
@@ -70,7 +71,8 @@ public class Reactor implements Serializable{
                     charge = 0;
                 }
         }else {
-            throw new NotSwitchedOnException("Debe encender el reactor e ingresar un valor");
+            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            //throw new NotSwitchedOnException("Debe encender el reactor e ingresar un valor");
         }
         return charge;
     }
@@ -83,21 +85,21 @@ public class Reactor implements Serializable{
     public int dischargeReactor(int value) {
         if (switchedOn == true) {
                 if (charge == 0) {
-                JOptionPane.showMessageDialog(null, "El reactor ya está completamente descargado", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El reactor ya está totalmente descargado", "Error", JOptionPane.ERROR_MESSAGE);
+                //throw new AlreadyDischargeException("Ya está completamente descargado");
             } else
             {
                 if((charge - value) < 0){
                     charge = 0;
-                    JOptionPane.showMessageDialog(null, "La carga es de: " + charge + "% el valor ingresado es demasiado alto", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El valor ingresado es demasiado alto, se descargará a 0%", "Error", JOptionPane.WARNING_MESSAGE);
                 }else {
                     charge = charge - value; 
-                }
-                   
+                }     
             }
         }else {
-            JOptionPane.showMessageDialog(null, "El reactor se encuentra apagado, debe encender antes de descargar", "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            //throw new NotSwitchedOnException("No se ha encendido el reactor");            
         }
-        
         return charge;
     }
 }

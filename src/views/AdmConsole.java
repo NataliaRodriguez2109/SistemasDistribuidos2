@@ -106,6 +106,9 @@ public class AdmConsole extends javax.swing.JFrame {
 
         txtDirPlanta.setToolTipText("Direccion de la planta");
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 201, 1));
         jButton1.setText("CONECTAR");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -134,14 +137,9 @@ public class AdmConsole extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(jButton1)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(118, 118, 118)
+                        .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 112, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,6 +150,10 @@ public class AdmConsole extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                             .addComponent(txtDirPlanta))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +168,9 @@ public class AdmConsole extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDirPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(40, 40, 40))
+                .addGap(50, 50, 50))
         );
 
         panelPlanta.setBackground(new java.awt.Color(255, 209, 1));
@@ -184,6 +186,9 @@ public class AdmConsole extends javax.swing.JFrame {
             .addGap(0, 472, Short.MAX_VALUE)
         );
 
+        btnClose.setBackground(new java.awt.Color(0, 0, 0));
+        btnClose.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 201, 1));
         btnClose.setText("Cerrar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

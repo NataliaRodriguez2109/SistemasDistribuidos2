@@ -42,7 +42,7 @@ public class ReactorMng extends javax.swing.JPanel {
         onOff.setIcon(iconOff);
         labelCarga.setIcon(carga);
         labelDescarga.setIcon(descarga);
-        labelLogo.setIcon(logo);        
+        labelLogo.setIcon(logo); 
         initialize(reactor);
     }
 
@@ -53,39 +53,36 @@ public class ReactorMng extends javax.swing.JPanel {
     
     
     public void initialize(Reactor reactor){
-        
-            if(reactor.getState().getLabel().equals("Dañado")){
-                pbCarga.setString("!");
-                pbCarga.setValue(0);
-                txtEstado.setText(reactor.getState().getLabel());
-                onOff.setEnabled(false);
-                btncargar.setEnabled(false);
-                btndescargar.setEnabled(false);
-                txtCarga.setEditable(false);
-                txtDescarga.setEditable(false);
-                txtEstado.setForeground(Color.red);
-                pbCarga.setForeground(Color.red);
-                btnReparar.setEnabled(true);
-            }else {
-                pbCarga.setValue(reactor.getCharge());
-                pbCarga.setString(reactor.getCharge() + "%");
-                txtEstado.setText(reactor.getState().getLabel());
-                txtEstado.setForeground(Color.green);
-                pbCarga.setForeground(Color.black);
-                onOff.setEnabled(true);
-                btncargar.setEnabled(true);
-                btndescargar.setEnabled(true);
-                txtCarga.setEditable(true);
-                txtDescarga.setEditable(true);
-                btnReparar.setEnabled(false);
-                if(reactor.isSwitchedOn()){
-                    onOff.setIcon(iconOn);
-                }else {
-                    onOff.setIcon(iconOff);
-                }
+        if (reactor.getState().getLabel().equals("Dañado")) {
+            pbCarga.setString("!");
+            pbCarga.setValue(0);
+            txtEstado.setText(reactor.getState().getLabel());
+            onOff.setEnabled(false);
+            btncargar.setEnabled(false);
+            btndescargar.setEnabled(false);
+            txtCarga.setEditable(false);
+            txtDescarga.setEditable(false);
+            txtEstado.setForeground(Color.red);
+            pbCarga.setForeground(Color.red);
+            btnReparar.setEnabled(true);
+        } else {
+            pbCarga.setValue(reactor.getCharge());
+            pbCarga.setString(reactor.getCharge() + "%");
+            txtEstado.setText(reactor.getState().getLabel());
+            txtEstado.setForeground(Color.green);
+            pbCarga.setForeground(Color.black);
+            onOff.setEnabled(true);
+            btncargar.setEnabled(true);
+            btndescargar.setEnabled(true);
+            txtCarga.setEditable(true);
+            txtDescarga.setEditable(true);
+            btnReparar.setEnabled(false);
+            if (reactor.isSwitchedOn()) {
+                onOff.setIcon(iconOn);
+            } else {
+                onOff.setIcon(iconOff);
             }
-              
-        
+        }
     }
     
 
@@ -139,6 +136,9 @@ public class ReactorMng extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Carga");
 
+        btncargar.setBackground(new java.awt.Color(0, 0, 0));
+        btncargar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncargar.setForeground(new java.awt.Color(255, 201, 1));
         btncargar.setText("Cargar");
         btncargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +146,9 @@ public class ReactorMng extends javax.swing.JPanel {
             }
         });
 
+        btndescargar.setBackground(new java.awt.Color(0, 0, 0));
+        btndescargar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btndescargar.setForeground(new java.awt.Color(255, 201, 1));
         btndescargar.setText("Descargar");
         btndescargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +187,9 @@ public class ReactorMng extends javax.swing.JPanel {
             }
         });
 
+        btnReparar.setBackground(new java.awt.Color(0, 0, 0));
+        btnReparar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReparar.setForeground(new java.awt.Color(255, 201, 1));
         btnReparar.setText("Reparar");
         btnReparar.setEnabled(false);
         btnReparar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +200,9 @@ public class ReactorMng extends javax.swing.JPanel {
 
         jLabel6.setText("%");
 
+        btnAtras.setBackground(new java.awt.Color(0, 0, 0));
+        btnAtras.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(255, 201, 1));
         btnAtras.setText("Atrás");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,89 +214,102 @@ public class ReactorMng extends javax.swing.JPanel {
         panelReactor.setLayout(panelReactorLayout);
         panelReactorLayout.setHorizontalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReactorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(314, 314, 314))
+            .addGroup(panelReactorLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelReactorLayout.createSequentialGroup()
+                        .addComponent(labelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel7)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(panelReactorLayout.createSequentialGroup()
+                        .addComponent(labelDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(19, 19, 19)
                     .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelReactorLayout.createSequentialGroup()
-                            .addGap(260, 260, 260)
+                            .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btncargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btndescargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                            .addComponent(txtDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(420, 420, 420))
+                        .addGroup(panelReactorLayout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelReactorLayout.createSequentialGroup()
+                            .addGap(265, 265, 265)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(40, 40, 40)
                             .addComponent(onOff, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelReactorLayout.createSequentialGroup()
-                            .addGap(30, 30, 30)
+                            .addGap(35, 35, 35)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, 0)
-                            .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelReactorLayout.createSequentialGroup()
-                            .addGap(310, 310, 310)
-                            .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelReactorLayout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(panelReactorLayout.createSequentialGroup()
-                                    .addComponent(btndescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(labelDescarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(panelReactorLayout.createSequentialGroup()
-                                    .addComponent(btncargar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(labelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelReactorLayout.createSequentialGroup()
-                                    .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(160, 160, 160)
-                                    .addComponent(jLabel7)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReactorLayout.createSequentialGroup()
-                                    .addComponent(txtDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(240, 240, 240)
-                                    .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         panelReactorLayout.setVerticalGroup(
             panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReactorLayout.createSequentialGroup()
+                .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelReactorLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(labelDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReactorLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150)))
+                .addComponent(btnAtras)
+                .addContainerGap())
             .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelReactorLayout.createSequentialGroup()
-                    .addGap(0, 23, Short.MAX_VALUE)
+                    .addGap(0, 19, Short.MAX_VALUE)
                     .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
                     .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addComponent(onOff, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(23, 23, 23)
-                    .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btncargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btncargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
                     .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btndescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtDescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReparar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(50, 50, 50)
                     .addGroup(panelReactorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelReactorLayout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(pbCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(30, 30, 30)
-                    .addComponent(btnAtras)
-                    .addGap(0, 24, Short.MAX_VALUE)))
+                    .addGap(0, 81, Short.MAX_VALUE)))
         );
 
         add(panelReactor);
@@ -312,13 +334,8 @@ public class ReactorMng extends javax.swing.JPanel {
             }
         }
         catch(NumberFormatException e){
-            if(reactor.isSwitchedOn()==false){
-                JOptionPane.showMessageDialog(null, "Debe encender el reactor e ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
-            }
-            else {
                 System.out.println(e.getMessage());
                 //JOptionPane.showMessageDialog(null, "Debe ingresar un valor", "Error: campo vacío", JOptionPane.ERROR_MESSAGE);
-            }
         }catch(NotSwitchedOnException e){
             System.out.println(e.getMessage());
             //JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);

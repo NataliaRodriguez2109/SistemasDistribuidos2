@@ -89,12 +89,17 @@ public class Reactor implements Serializable{
                 throw new AlreadyDischargeException("Ya está completamente descargado");
             } else
             {
-                if((charge - value) < 0){
-                    charge = 0;
-                    JOptionPane.showMessageDialog(null, "El valor ingresado es demasiado alto, se descargará a 0%", "Error", JOptionPane.WARNING_MESSAGE);
+                if (charge == 0) {
+                   JOptionPane.showMessageDialog(null, "Debe encender el reactor", "Error", JOptionPane.ERROR_MESSAGE);
                 }else {
-                    charge = charge - value; 
-                }     
+                    if((charge - value) < 0){
+                      charge = 0;
+                      JOptionPane.showMessageDialog(null, "El valor ingresado es demasiado alto, se descargará a 0%", "Error", JOptionPane.WARNING_MESSAGE);
+                  }else {
+                      charge = charge - value; 
+                  }  
+                }
+                     
             }
         }else {
             //JOptionPane.showMessageDialog(null, "Debe encender el reactor para ingresar un valor", "Error", JOptionPane.ERROR_MESSAGE);

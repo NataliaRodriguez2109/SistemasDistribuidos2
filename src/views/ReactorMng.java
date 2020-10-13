@@ -48,9 +48,7 @@ public class ReactorMng extends javax.swing.JPanel {
     
     
     public void initialize(Reactor reactor){
-        pbCarga.setValue(reactor.getCharge());
-        pbCarga.setString(reactor.getCharge() + "%");
-        txtEstado.setText(reactor.getState().getLabel());
+        
         if(reactor.getState().getLabel().equals("Dañado")){
             pbCarga.setString("!");
             pbCarga.setValue(0);
@@ -63,12 +61,25 @@ public class ReactorMng extends javax.swing.JPanel {
             txtEstado.setForeground(Color.red);
             pbCarga.setForeground(Color.red);
             btnReparar.setEnabled(true);
-        }
-        if(reactor.isSwitchedOn()){
-            onOff.setIcon(iconOn);
         }else {
-            onOff.setIcon(iconOff);
+            pbCarga.setValue(reactor.getCharge());
+            pbCarga.setString(reactor.getCharge() + "%");
+            txtEstado.setText(reactor.getState().getLabel());
+            txtEstado.setForeground(Color.green);
+            pbCarga.setForeground(Color.black);
+            onOff.setEnabled(true);
+            btncargar.setEnabled(true);
+            btndescargar.setEnabled(true);
+            txtCarga.setEditable(true);
+            txtDescarga.setEditable(true);
+            btnReparar.setEnabled(false);
+            if(reactor.isSwitchedOn()){
+                onOff.setIcon(iconOn);
+            }else {
+                onOff.setIcon(iconOff);
         }
+        }
+        
     }
     
 
@@ -282,8 +293,12 @@ public class ReactorMng extends javax.swing.JPanel {
             if(Integer.parseInt(txtCarga.getText()) < 0) {
                 JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }else {
-                reactor.chargeReactor(Integer.parseInt(txtCarga.getText()));
-                initialize(reactor);
+                String contenido[] = new String[4];
+                contenido[0] = ""+pos;
+                contenido[1] = "cargar";
+                contenido[2] = txtCarga.getText()+"";
+                contenido[3] = "";
+                padre.getAdmm().emit(new Message(contenido));
                 if(reactor.getCharge()>100){
                     JOptionPane.showMessageDialog(null, "¡Se ha dañado el reactor!", "Error", JOptionPane.ERROR_MESSAGE);
                     initialize(reactor);
@@ -308,8 +323,12 @@ public class ReactorMng extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El valor ingresado no es válido", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
-                reactor.dischargeReactor(Integer.parseInt(txtDescarga.getText()));
-                initialize(reactor);
+                String contenido[] = new String[4];
+                contenido[0] = ""+pos;
+                contenido[1] = "descargar"; 
+                contenido[2] = txtDescarga.getText() + "";
+                contenido[3] = "";
+                padre.getAdmm().emit(new Message(contenido));
             }
         }catch(NumberFormatException e){
             if(reactor.isSwitchedOn()==false){
@@ -338,6 +357,7 @@ public class ReactorMng extends javax.swing.JPanel {
             contenido[1] = "apagar";            
             contenido[3] = "";
             padre.getAdmm().emit(new Message(contenido));
+            initialize(reactor);
         }
     }//GEN-LAST:event_onOffActionPerformed
 
@@ -346,14 +366,17 @@ public class ReactorMng extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEstadoActionPerformed
 
     private void btnRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepararActionPerformed
-        reactor.repair();
-        reactor.setCharge(0);
-        txtEstado.setText(reactor.getState().getLabel());
+        String contenido[] = new String[4];
+        contenido[0] = ""+pos;
+        contenido[1] = "reparar";            
+        contenido[3] = "";
+        padre.getAdmm().emit(new Message(contenido));
         initialize(reactor);
         JOptionPane.showMessageDialog(null, "Reactor reparado", "Hecho!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRepararActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        padre.pintarPanel(new PlantaGraph (padre.getAdmm().getPlanta(), padre));
         
     }//GEN-LAST:event_btnAtrasActionPerformed
 

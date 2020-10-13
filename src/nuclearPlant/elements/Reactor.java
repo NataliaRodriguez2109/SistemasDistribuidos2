@@ -5,6 +5,7 @@
  */
 package nuclearPlant.elements;
 
+import Exceptions.NotSwitchedOnException;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
 
@@ -45,7 +46,8 @@ public class Reactor implements Serializable{
     }
     
     public boolean turnOff() {
-        switchedOn = false;            
+        switchedOn = false;  
+        charge = 0;
         return switchedOn;
     }
     
@@ -65,9 +67,10 @@ public class Reactor implements Serializable{
                 charge = charge + value;   
                 if(charge > 100){
                     dañar();
+                    charge = 0;
                 }
         }else {
-            JOptionPane.showMessageDialog(null, "El reactor se encuentra apagado, debe encender antes de cargar", "Error", JOptionPane.INFORMATION_MESSAGE);
+            throw new NotSwitchedOnException("Debe encender el reactor e ingresar un valor");
         }
         return charge;
     }

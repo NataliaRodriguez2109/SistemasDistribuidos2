@@ -22,6 +22,8 @@ import nuclearPlant.tools.HiloEnviar;
 import nuclearPlant.tools.HiloRecibir;
 import nuclearPlant.tools.IPScanner;
 
+
+
 public class PlantControl {
 
     private ServerSocket servidor;
